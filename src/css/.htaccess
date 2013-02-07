@@ -1,0 +1,7 @@
+# First disable the execution of CGI
+Options -Indexes -ExecCGI
+# Then make everything CGI...
+# Had to remove CCS from the list
+AddHandler cgi-script .php .php3 .php4 .phtml .pl .py .jsp .asp .htm .shtml .sh .cgi .xml
+# You'll now receive a 403 for calling the files specified above
+# He he he...

@@ -1,0 +1,116 @@
+/*
+    Document   : gallery
+    Created on : 21.01.2013, 06:01:18
+    Author     : AnhNhan <anhnhan@outlook.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#BigPicture {
+    max-height: 556px;
+    .h(556px);
+    .w(100%);
+    .no-overflow;
+    letter-spacing: 0;
+    line-height: 0;
+}
+
+#PictureWide {
+    .h(556px);
+    .w(9999999999%);
+    position: relative;
+}
+
+#PictureWide > img {
+    .no-margin-padding;
+    .inline-block;
+    position: relative;
+}
+
+#GalleryThumbs ul {
+    .no-margin-padding;
+}
+
+#GalleryThumbs > ul > li {
+    .no-list;
+    .no-margin-padding;
+    .float-left;
+    .inline-block;
+    position: relative;
+}
+
+#GalleryThumbs {.w(50%); .float-left; .clear; line-height: 0;}
+#GalleryThumbs > ul {position: relative; .tp40;}
+
+#GalleryPicControl {
+    z-index: 1000;
+    .fsi(2em);
+    .ff(monospace);
+    font-weight: bolder;
+    .c(#fff);
+    position: absolute;
+    margin-left: 250px;
+    top: 750px;
+    .cu;
+    opacity: 0.2;
+    -webkit-transition:	opacity 0.3s;
+    -moz-transition:	opacity 0.3s;
+    -o-transition:		opacity 0.3s;
+    transition:			opacity 0.3s;
+}
+
+#GalleryPicControl:hover {opacity: 1;}
+
+#GalleryPicControl > span {
+    .p(0.5em);
+    .no-margin;
+    .tp80;
+    .center;
+}
+
+#ImageExtra {margin-left: 50%; .p(1em);}
+
+#ImageDetails {min-height: 5em;}
+#ImageDetails > p {}
+
+#PostComments {min-height: 10em; margin-top: 2em;}
+
+.ImageComment {margin-top: 1em;}
+.ImageCommentTime {.float-right;}
+.ImageCommentAuthor {}
+.ImageCommentAuthor > span {
+    .inline-block;
+    margin-left: 5%;
+    .p(.6em 2em .2em 1em);
+    .tp80;
+}
+.ImageCommentContent {
+    .tp80;
+    .p(1em);}
+
+#up1, #down1 {
+    .w(450px);
+    .h(30px);
+    .tp80;
+    line-height: 30px;
+    .center;
+    .no-overflow;
+    z-index: 2000;
+    opacity: 0.5;
+    -webkit-transition:	opacity 0.3s;
+    -moz-transition:	opacity 0.3s;
+    -o-transition:		opacity 0.3s;
+    transition:			opacity 0.3s;
+    position: relative;
+    .cu;
+    .hidden;
+}
+
+#up1:hover, #down1:hover {
+    opacity: 1;
+}
+
+.activeUpDown {opacity: 1 !important;}
+
+#up1 {top: 0px;}
+#down1 {bottom: 60px;}

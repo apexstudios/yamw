@@ -1,0 +1,15 @@
+*.phar
+build/artifacts
+build/vanity/output
+build/vanity/reports
+phpunit.xml
+phpunit.functional.xml
+test_services.json
+Config
+Makefile
+.idea
+.DS_Store
+.swp
+.build
+composer.lock
+vendor

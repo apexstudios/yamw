@@ -1,0 +1,1 @@
+(function(){function b(c){return c}function a(c){return b(c.text1)}document.write(a({text1:"Hello"}))})();

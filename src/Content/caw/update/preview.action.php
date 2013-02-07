@@ -1,0 +1,3 @@
+<?php
+$this->noTemplate();
+hasToBeAdmin();

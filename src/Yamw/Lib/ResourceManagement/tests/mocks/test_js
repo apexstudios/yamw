@@ -1,0 +1,21 @@
+// Jo, jo, jo
+
+/**
+ * Some text here
+ *
+ * @author Me
+ */
+
+(function() {
+
+function test1(text) {
+    return text;
+}
+
+function test2(obj) {
+    return test1(obj.text1);
+}
+
+document.write(test2({text1: "Hello"}));
+
+})();

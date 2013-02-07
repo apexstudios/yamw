@@ -1,0 +1,85 @@
+/*
+    Document   : drig
+    Created on : 21.01.2013, 06:01:18
+    Author     : AnhNhan <anhnhan@outlook.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.grid-width (@width) {
+    .w(@width * @gridWidth);
+}
+
+.grid-width-flex (@width) {
+    .w(@width * @gridWidth / @gridTotal);
+}
+
+.row, .row-flex {
+    .no-margin-padding;
+    width: 100%;
+    
+    .clear;
+
+    .div-grid, .width1, .width2, .width3, .width4, .width5, .width6, .width7, .width8, .width9, .width10, .width11, .width12 {
+        .no-margin-padding;
+        .ff(@stdFont);
+        .fsi(@stdFontSize);
+        .c(@stdFontColor);
+        line-height: @baseLineHeight;
+        .float-left;
+        
+        img {
+            max-width: 100%;
+        }
+    }
+}
+
+.row {
+    .width1 {
+        .grid-width(1);
+    }
+    
+    .width2 {
+        .grid-width(2);
+    }
+    
+    .width3 {
+        .grid-width(3);
+    }
+    
+    .width4 {
+        .grid-width(4);
+    }
+    
+    .width5 {
+        .grid-width(5);
+    }
+    
+    .width6 {
+        .grid-width(6);
+    }
+    
+    .width7 {
+        .grid-width(7);
+    }
+    
+    .width8 {
+        .grid-width(8);
+    }
+    
+    .width9 {
+        .grid-width(9);
+    }
+    
+    .width10 {
+        .grid-width(10);
+    }
+    
+    .width11 {
+        .grid-width(11);
+    }
+    
+    .width12 {
+        .grid-width(12);
+    }
+}

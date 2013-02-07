@@ -1,0 +1,116 @@
+/*
+    Document   : default
+    Created on : 21.01.2013, 06:01:18
+    Author     : AnhNhan <anhnhan@outlook.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+* {
+    .no-margin-padding;
+}
+
+blockquote {
+    .margin-vert(0.2em);
+	.inline-block;
+}
+
+blockquote:before, blockquote:after {
+	content: "<hr class=\"blockquote_hr\" />";
+}
+
+.blockquote_hr {
+	.margin-vert(0.2em);
+}
+
+a {
+	.no-deco;
+	.c(#fff);
+	/*text-shadow: #212133 3px 3px 5px;*/
+}
+
+a:hover {
+	.c(#ccd);
+	text-decoration: underline;
+}
+
+a:focus {
+	.c(#99a);
+	text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6, a {
+	.c(#fff);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin-bottom: 0.2em;
+}
+
+tr:nth-child(odd) {
+	.tp20
+}
+
+input[disabled=disabled] {
+	.bgc(grey);
+}
+
+img {
+	.no-borders;
+}
+
+ul li, ol li {
+	margin-left: 2.5em;
+}
+
+p {
+	.m(1em);
+    text-align: justify;
+}
+
+textarea {
+	.w(100%);
+}
+
+body {
+	.fsi(@stdFontSize);
+	.ff(@stdFont);
+	.c(@lighterGrey);
+	.bg(@black);
+	.bg(@UNSCAttacks);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+    .no-margin-padding;
+}
+
+
+acronym {
+	.inline-block;
+	.c(@white);
+	.bgc(@colorInfo);
+	.no-borders;
+	.w(1em);
+	.h(1em);
+	.p(0.2em);
+	.no-margin;
+	.center;
+
+	.border-radius(1em);
+
+	text-shadow: #fff 0em 0em 0.2em;
+}
+
+code {
+    .ff(@monoFont);
+    .fsi(@stdFontSize);
+}
+
+code.monospace {
+    .inline-block;
+    .border-radius(2px);
+    .p(1px 5px);
+    border: 1px solid #a33;
+    .c(#a33);
+    .bg(#eee);
+}

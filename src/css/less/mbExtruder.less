@@ -1,0 +1,66 @@
+/*
+    Document   : main
+    Created on : 21.01.2013, 06:01:18
+    Author     : AnhNhan <anhnhan@outlook.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.extruder {
+  position:fixed;
+  cursor: default;
+  color: #ddd;
+}
+
+.extruder .header {
+  height:27px;
+
+  display: none;
+}
+
+.extruder .content {
+  display:none;
+  position: absolute;
+  padding: 1em;
+  left: -0.75em;
+}
+
+.extruder .footer {
+  display:block;
+  padding:5px;
+  height:10px;
+
+  display: none;
+}
+
+.extruder.left {
+  height:100%;
+}
+
+.extruder.left .content {
+  display:block;
+}
+
+
+.extruder.left .ext_wrapper{
+  height:100%;
+}
+
+.extruder.left .footer{
+  display:none;
+}
+
+.extruder .flap {
+  font-size:32px;
+  font-family: Segoe UI, sans-serif;
+  top:20px;
+  padding: 40px 6px 40px 10px;
+  width:50px;
+  position:absolute;
+  right:-44px;
+  cursor: pointer;
+}
+
+.extruder .flap, .extruder .content {
+	background: @tp80 repeat !important;
+}

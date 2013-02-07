@@ -1,0 +1,138 @@
+/*
+    Document   : apycom
+    Created on : 21.01.2013, 06:01:18
+    Author     : AnhNhan <anhnhan@outlook.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+div#menu {
+    height:41px;
+    background: @main-bg repeat-x;
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        float: left;
+    }
+    ul.menu {
+        padding-left: 30px;
+    }
+
+    li {
+        position: relative;
+        z-index: 9;
+        margin: 0;
+        padding: 0 5px 0 0;
+        display: block;
+        float: left;
+    }
+    li:hover>ul {
+        left: -2px;
+    }
+
+    a {
+        position: relative;
+        z-index: 10;
+        height: 41px;
+        display: block;
+        float: left;
+        line-height: 41px;
+        text-decoration: none;
+        font: normal 12px Trebuchet MS;
+    }
+    a:hover, div#menu a:hover span { color: #fff; }
+    li.current a {}
+
+    span {
+        display: block;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        background-position: 95% 0;
+    }
+    ul ul a.parent span {
+        background-position:95% 8px;
+        background-image: url(../../images/item-pointer.gif);
+    }
+    ul ul a.parent:hover span {
+        background-image: url(../../images/item-pointer-mover.gif);
+    }
+
+    /* menu::level1 */
+    a {
+        padding: 0 10px 0 10px;
+        line-height: 30px;
+        color: #e5e5e5;
+    }
+    span {
+        margin-top: 5px;
+    }/**@replace#1*/
+    li { background: url(../../images/main-delimiter.png) 98% 4px no-repeat; }
+    li.last { background: none; }
+
+    /* menu::level2 */
+    ul ul li { background: none; }
+    ul ul {
+        .main-bg;
+        position: absolute;
+        top: 38px;
+        left: -999em;
+        width: 163px;
+        padding: 5px 0 0 0;
+        margin-top:3px;
+    }
+    ul ul a {
+        padding: 0 0 0 15px;
+        height: auto;
+        float: none;
+        display: block;
+        line-height: 24px;
+        color: rgb(169,169,169);
+    }
+    ul ul span {
+        margin-top: 0;
+        padding-right: 15px;
+        _padding-right: 20px;
+        color: rgb(169,169,169);
+    }
+    ul ul a:hover span {
+        color: #fff;
+    }
+    ul ul li.last { background: none; }
+    ul ul li {
+        width: 100%;
+    }
+
+    /* menu::level3 */
+    ul ul ul {
+        padding: 0;
+        margin: -38px 0 0 163px !important;
+        margin-left:172px;
+    }
+
+    /* colors */
+    ul ul ul {
+        .main-bg;
+
+        ul ul ul { .main-bg; }
+        ul ul ul { .main-bg; }
+    }
+
+    /* lava lamp */
+    li.back {
+        background: @lava no-repeat right -44px !important;
+        background-image: @lava;
+        width: 13px;
+        height: 44px;
+        z-index: 1;
+        position: absolute;
+        margin: -1px 0 0 -5px;
+    }
+    li.back .left {
+        background: @lava no-repeat top left !important;
+        background-image: @lava;
+        height: 44px;
+        margin-right: -4px;
+    }
+}

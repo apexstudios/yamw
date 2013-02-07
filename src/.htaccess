@@ -1,0 +1,24 @@
+Options +FollowSymLinks -ExecCGI -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  RewriteBase /
+  
+  RewriteCond %{HTTP_HOST} ^(.*?\.)?halocaw.com.*$ [NC]
+  RewriteRule ^(.*)$ http://halocaw.net/$1 [R=301,L]
+  
+  RewriteCond %{SCRIPT_FILENAME} !-f
+  RewriteRule ^(.*?)$ index.php?page=$1 [L]
+</IfModule>
+
+ExpiresActive On
+ExpiresByType image/gif A604800
+ExpiresByType image/png A604800
+ExpiresByType image/jpg A604800
+
+AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/x-javascript
+
+# Security Measure
+# With DirectorySlash On the server shows weird behaviour
+DirectorySlash On

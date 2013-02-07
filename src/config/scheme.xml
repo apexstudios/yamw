@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE scheme>
+<scheme>
+	<map table_name="units_space" model_name="SpaceUnit">
+		<column name="id"></column>
+		<column name="draft"></column>
+		<column name="name"></column>
+		<column name="image"></column>
+		<column name="affiliation"></column>
+		<column name="layer"></column>
+		<column name="description"></column>
+		<column name="cached_description"></column></map>
+	<map table_name="units_ground" model_name="SpaceUnit" />
+	<map table_name="updates" model_name="Update">
+		<column name="id"></column>
+		<column name="draft"></column>
+		<column name="date"></column>
+		<column name="text"></column>
+		<column name="cached_text"></column>
+		<column name="desc"></column></map>
+	<map table_name="chat" model_name="Chat">
+		<column name="id"></column>
+		<column name="draft"></column>
+		<column name="time"></column>
+		<column name="name"></column>
+		<column name="text"></column>
+		<column name="cached_text"></column></map>
+	<map table_name="staff" model_name="About">
+		<column name="id"></column>
+		<column name="draft"></column>
+		<column name="name"></column>
+		<column name="img"></column>
+		<column name="position"></column>
+		<column name="description"></column>
+		<column name="cached_description"></column></map>
+	<map table_name="forum_cache" model_name="None">
+		<column name="id"></column>
+		<column name="cached_content"></column>
+		<column name="last_modified"></column></map>
+	<map table_name="meta" model_name="None" />
+	<map table_name="menu" model_name="None" />
+	<map table_name="menu_entries" name="MenuEntry" />
+</scheme>

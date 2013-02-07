@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE routes>
+<routes>
+	<route>
+		<name>thumbnail_plus_api</name>
+		<url>/:section/:module/:action/:id/:type</url>
+		<params>
+			<section>api</section>
+		</params>
+	</route>
+	<route>
+		<name>homepage_hub</name>
+		<url>/</url>
+		<params>
+			<section>hub</section>
+			<module>home</module>
+			<action>index</action>
+		</params>
+	</route>
+	<route>
+		<name>auto_section</name>
+		<url>/:section</url>
+		<params>
+			<section>hub</section>
+			<action>index</action>
+		</params>
+	</route>
+	<route>
+		<name>auto_section_module</name>
+		<url>/:section/:module</url>
+		<params>
+			<action>index</action>
+		</params>
+	</route>
+	<route>
+		<name>auto_module_action</name>
+		<url>/:section/:module/:action</url>
+	</route>
+	<route>
+		<name>auto_module_action_id</name>
+		<url>/:section/:module/:action/:id</url>
+	</route>
+	<route>
+		<name>thumbnail</name>
+		<url>/:section/:module/:action/:id/:size</url>
+	</route>
+</routes>

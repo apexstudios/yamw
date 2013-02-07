@@ -1,0 +1,6 @@
+# First disable the execution of CGI
+Options -Indexes -ExecCGI
+# Then make *nearly* everything CGI...
+AddHandler cgi-script .phtml .pl .py .jsp .asp .htm .shtml .sh .cgi
+# You'll now receive a 403 for calling the files specified above
+# He he he...

@@ -1,0 +1,278 @@
+/*
+    Document   : screens
+    Created on : 21.01.2013, 06:01:18
+    Author     : AnhNhan <anhnhan@outlook.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+/* HomePanel Start */
+
+#home_screen {
+    .h(400px);
+	.w(900px);
+    .no-margin-padding;
+}
+
+#screen_panel {
+	.h(400px);
+	.w(650px);
+    .no-margin-padding;
+	.float-right;
+    .tp80;
+}
+
+.screen {
+	.h(400px);
+	.w(auto);
+	.no-margin;
+	.p(1.85em 2.5em);
+}
+
+#screen_selector {
+	.w(250px);
+    .no-margin-padding;
+	.float-left;
+}
+
+#screen_selector a {
+    .no-margin-padding;
+	.h(100px);
+	.w(100%);
+	.tp40;
+	.block;
+}
+
+#screen_selector a:hover {
+	.tp60;
+	.no-deco;
+	.c(#fff);
+}
+
+#screen_selector a:focus {
+	.no-deco;
+	.c(#fff);
+}
+
+#screen_selector a span {
+	.p(1em 1.4em);
+	.block;
+}
+
+.selected {
+	background: @tp80 !important;
+}
+
+/* HomePanel End */
+
+/* UnitsPanel Start */
+
+#aff_screen {
+}
+#aff_screen, #cov_screen, #unsc_screen, #flood_screen {
+	.h(auto);
+	.w(900px);
+    .no-margin-padding;
+}
+
+#aff_screen_panel, #cov_screen_panel, #unsc_screen_panel, #flood_screen_panel  {
+	.w(900px);
+    .no-margin-padding;
+	.no-overflow;
+}
+#cov_screen_panel, #unsc_screen_panel, #flood_screen_panel {
+	.w(700px);
+	.float-right;
+	.tp20;
+}
+
+.units_screen {
+	.w(auto);
+    .no-margin-padding;
+}
+.cov_screen, .unsc_screen, .flood_screen {
+    .no-margin-padding;
+	.w(auto);
+	.h(450px);
+	.p(1.5em 2em);
+}
+
+.panel_selector {
+	.h(100%);
+	.w(900px);
+    .no-margin-padding;
+}
+#cov_selector, #unsc_selector, #flood_selector {
+	.float-left;
+	.w(200px);
+	.h(425px);
+}
+#aff_selector {
+	background: url('../../img/bgs/transparent_black_40.png') !important;
+	.small-caps
+}
+
+.panel_selector a {
+    .no-margin-padding;
+	.float-left;
+	.block;
+	.bgi('../../images/main-bg.png');
+    .h(80px);
+	.w(300px);
+}
+#cov_selector a, #unsc_selector a, #flood_selector a {
+	.h(40px);
+	.w(100%);
+	.no-float;
+	.block;
+}
+
+#aff_tab_1, #aff_screen_1 {
+	.bgi('../../img/bgs/transparent_cov.png');
+}
+
+#aff_tab_2, #aff_screen_2 {
+	.bgi('../../img/bgs/transparent_unsc.png');
+}
+
+#aff_tab_3, #aff_screen_3 {
+	.bgi('../../img/bgs/transparent_flood.png');
+}
+
+#aff_tab_1, #aff_tab_2, #aff_tab_3 {
+	.no-overflow;
+}
+
+.panel_selector a:hover {
+	.no-deco;
+	.c(#fff);
+}
+#cov_selector a:hover, #unsc_selector a:hover, #flood_selector a:hover {
+	.tp60;
+}
+
+.panel_selector a:focus {
+	.no-deco;
+	.c(#fff);
+}
+
+.panel_selector a span {
+	.p(0.25em 0.46em);
+	.block;
+	.fsi(3em);
+	.h(60px);
+}
+
+#cov_selector a span, #unsc_selector a span, #flood_selector a span {
+	.fsi(1em);
+	.no-margin;
+	.h(40px);
+	.p(0.6em 1.0em);
+	.w(200px);
+}
+
+.aff_selected span, .cov_selected, .unsc_selected, .flood_selected {
+	background: @tp20 !important;
+}
+
+/* UnitsPanel End */
+
+/* Admin Panel Start */
+
+#admin_screen {
+    background: @tp40 !important;
+}
+
+#admin_screen .panel_selector a {
+	background: @tp60 !important;
+	.w(20%);
+	.fsi(0.75em);
+	.center;
+	.p(auto);
+	.h(64px);
+}
+
+#admin_screen .panel_selector a.admin_selected {
+	background: @tp40 !important;
+}
+
+#admin_screen {
+	background: @tp40 !important;
+}
+
+#admin_screen_panel {
+	background: @tp40 !important;
+	.h(10em);
+	.no-padding;
+}
+
+#admin_screen_panel > .admin_screen > div {
+	.margin-auto;
+	.no-padding;
+	.float-left;
+	.block;
+}
+
+#admin_screen_panel > .admin_screen > div:hover {
+	.tp40;
+}
+
+#admin_screen_panel > .admin_screen > div > span {
+	.p(1em 9.5em);
+	.inline-block;
+}
+
+#admin_screen_panel > .admin_screen > div a {
+	.block;
+	.cu;
+}
+
+#admin_screen_panel > .admin_screen > div a > span.fullmenu {
+	.p(4.275em 4em);
+	.center;
+	.inline-block;
+}
+
+#admin_screen_panel > .admin_screen > div > ul {
+    .no-margin-padding;
+	.block;
+}
+
+#admin_screen_panel > .admin_screen > div > ul > li {
+    .no-margin-padding;
+	.no-list;
+	.float-left;
+	.block;
+}
+
+#admin_screen_panel > .admin_screen > div > ul > li:hover {
+	background: @tp40 !important;
+}
+
+#admin_screen_panel > .admin_screen > div > ul > li > a {
+	.block;
+}
+
+#admin_screen_panel > .admin_screen > div > ul > li > a > span {
+	.inline-block;
+	.no-margin;
+	.p(2.65em 2.5em);
+	.w(5.5em);
+}
+
+#admin_screen_panel > .admin_screen > div > ul > li.admin_nbsp {
+	.fsi(0.65em);
+	.inline-block;
+}
+
+#admin_screen_panel > .admin_screen > div > ul > li.admin_nbsp:hover, .admin_nbsp:hover {background: none !important;}
+
+.admin_nbsp > span {
+	background: @tp20 !important;
+	padding: 3.275em 0 !important;
+	margin: 1em 0.5em !important;
+	.inline-block;
+}
+
+/* Admin Panel End */

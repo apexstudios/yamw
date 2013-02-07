@@ -1,0 +1,7 @@
+* Remove padding/margin from CodeBox line number list *DONE*
+* Add the rest to the admin panel *IN PROGRESS*
+* Add more security to the stuff *DONE*
+* Add unified Form functionality *DONE*
+* Add file upload *DONE*
+* Improve AdvMySql-Functionality
+* Add User System *DONE*

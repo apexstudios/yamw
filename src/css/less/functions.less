@@ -1,0 +1,87 @@
+/* 
+    Document   : functions
+    Created on : 21.01.2013, 06:01:18
+    Author     : AnhNhan <anhnhan@outlook.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.margin-vert (@size) {
+    margin-top: @size;
+    margin-bottom: @size;
+}
+
+.margin-horz (@size) {
+    margin-left: @size;
+    margin-right: @size;
+}
+
+.padding-vert (@size) {
+    padding-top: @size;
+    padding-bottom: @size;
+}
+
+.padding-horz (@size) {
+    padding-left: @size;
+    padding-right: @size;
+}
+
+.clear (@side: both) {
+    clear: @side;
+}
+
+.bg (@rest) {
+    background: @rest;
+}
+
+.bgc (@color) {
+    background-color: @color;
+}
+
+.bgi (@image) {
+    background-image: url(@image);
+}
+
+.w (@width: auto) {
+    width: @width;
+}
+
+.h (@height: auto) {
+    height: @height;
+}
+
+.m (@size) {
+    margin: @size;
+}
+
+.p (@size) {
+    padding: @size;
+}
+
+.fsi (@size) {
+    font-size: @size;
+}
+
+.fst (@style) {
+    font-style: @style;
+}
+
+.ff (@rest) {
+    font-family: @rest;
+}
+
+// Color
+.c (@color) {
+    color: @color;
+}
+
+// Cursor
+.cu (@cursor: pointer) {
+    cursor: @cursor;
+}
+
+.border-radius (@size: @borderRadiusLarge) {
+    -moz-border-radius: @borderRadiusLarge;
+    -webkit-border-radius: @borderRadiusLarge;
+	border-radius: @borderRadiusLarge;
+}

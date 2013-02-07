@@ -1,0 +1,10 @@
+Options +FollowSymLinks -ExecCGI -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteBase /
+
+  RewriteCond %{HTTP_HOST} ^www\..*$ [NC]
+  RewriteRule ^(.*)$ http://halocaw.net/$1 [R=301,L]
+</IfModule>
