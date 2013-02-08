@@ -7,6 +7,19 @@ use \Yamw\Lib\MySql\AdvMySql;
 use \Yamw\Lib\Property;
 use \Yamw\Lib\UAM\UAM;
 
+/**
+ * The Chat model class
+ *
+ * @author AnhNhan <anhnhan@outlook.com>
+ * @package Yamw
+ * @subpackage Models
+ *
+ * @property int $Id Description
+ * @property int $Uid Description
+ * @property string $Name Description
+ * @property string $Text Description
+ * @property string $RawText Description
+ */
 class Chat extends Modelizer_Base implements ModelizerInterface
 {
     protected static $table = 'chat';
