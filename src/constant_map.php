@@ -5,8 +5,8 @@
 
 return array(
    'css_hash' => 'f8f78e342e0b63b6e09348b577daa45865b88037',
-   'css_last_update' => '1360260211',
-   'js_hash' => 'c517dfa520210d233b9aa86f90f494de79059f4f',
-   'js_last_update' => '1360260220',
+   'css_last_update' => '1360349122',
+   'js_hash' => '86ecefc353542f1d12a338f5229edaf1acb31027',
+   'js_last_update' => '1360349131',
 );
 
