@@ -62,6 +62,7 @@ class CompileController extends RootController implements Help
             'js/jquery.easing.1.3.js',
             'js/jquery.blockUI.js',
             'js/jquery.notice.js',
+            'js/common.js',
         );
 
         $compiler = ResMgr::compileAndSave('js');

@@ -94,6 +94,7 @@ class ResController extends RootController
             'js/jquery.easing.1.3.js',
             'js/jquery.blockUI.js',
             'js/jquery.notice.js',
+            'js/common.js',
         );
     }
 }

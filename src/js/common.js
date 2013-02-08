@@ -1,29 +1,3 @@
-<?php
-contenttype('application/x-javascript');
-cache();
-
-include path('js/jquery-1.8.3.min.js');
-include path('js/jquery.effects.core.min.js');
-include path('js/jquery.effects.blind.min.js');
-include path('js/jquery.effects.bounce.min.js');
-include path('js/jquery.effects.clip.min.js');
-include path('js/jquery.effects.drop.min.js');
-include path('js/jquery.effects.fade.min.js');
-include path('js/jquery.effects.fold.min.js');
-include path('js/jquery.effects.highlight.min.js');
-include path('js/jquery.effects.pulsate.min.js');
-include path('js/jquery.effects.transfer.min.js');
-include path('js/jquery.extras.min.js');
-include path('js/mbExtruder.min.js');
-include path('js/jquery.easing.1.3.js');
-include path('js/jquery.cycle.all.js');
-include path('js/jquery.blockUI.js');
-include path('js/jquery.taconite.js');
-include path('js/jquery.notice.js');
-
-
-if (!function_exists('println')): ?>
-<script type="text/javascript"><?php endif; ?>
 // General Area
 
 function statusMessage(data) {
@@ -85,7 +59,7 @@ function adLoad(target, container, area) {
  */
 function reissueThumbnails(filename, sizes) {
     if(sizes == "default")
-        sizes = [<?= TN_SMALL_WIDTH ?>, <?= TN_BIG_WIDTH ?>];
+        sizes = [150, 900];
 
     $.noticeAdd({
         text: sizes.length + " thumbnail generation tasks have been" +
@@ -182,6 +156,3 @@ function chatUpdate() {
         }
     });
 }
-
-<?php if (!function_exists('println')): ?></script>
-<?php endif; ?>
