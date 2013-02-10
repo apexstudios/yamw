@@ -5,9 +5,6 @@ Options +FollowSymLinks -ExecCGI -Indexes
   
   RewriteBase /
   
-  RewriteCond %{HTTP_HOST} ^(.*?\.)?halocaw.com.*$ [NC]
-  RewriteRule ^(.*)$ http://halocaw.net/$1 [R=301,L]
-  
   RewriteCond %{SCRIPT_FILENAME} !-f
   RewriteRule ^(.*?)$ index.php?page=$1 [L]
 </IfModule>
