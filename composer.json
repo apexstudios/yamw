@@ -18,6 +18,7 @@
 	"autoload": {
 		"psr-0": {
 			"Yamw":	"src/",
+			"YamwLibs":	"vendor/yamw/yamwlib/src/",
 			"Modules": "src/",
             "Selenium": "Selenium/",
 			"Custom": "src/"
