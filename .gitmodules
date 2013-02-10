@@ -1,0 +1,3 @@
+[submodule "vendor/yamw/yamwlib"]
+	path = vendor/yamw/yamwlib
+	url = git@github.com:apexstudios/yamwlib.git
