@@ -2,7 +2,9 @@
 namespace Yamw\Lib\Auth;
 
 /**
- * @author AnhNhan
+ * @author AnhNhan <anhnhan@outlook.com>
+ * @package Yamw
+ * @subpackage Auth
  */
 class AuthTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,5 +33,3 @@ class AuthTest extends \PHPUnit_Framework_TestCase
         Auth::updateAuthLevel($orig);
     }
 }
-
-?>
