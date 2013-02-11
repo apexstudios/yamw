@@ -28,7 +28,7 @@ final class AdvMySql_Conn
             $e->getMessage();
             exit;
         }
-        self::$conn->query('set profiling=1');
+
         self::$conn->set_charset("utf8");
     }
 
