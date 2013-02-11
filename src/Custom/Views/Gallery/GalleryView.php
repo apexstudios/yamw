@@ -90,6 +90,25 @@ class GalleryView implements \Yamw\Views\Interfaces\ViewInterface
                                 'id' => 'commenttext'
                             )
                         )
+                    )->appendContent(
+                        new HtmlTag(
+                            'input',
+                            null,
+                            array(
+                                'type' => 'submit',
+                                'id' => 'postcomment_submit',
+                                'value' => 'Comment',
+                                'class' => 'submitbutton',
+                            )
+                        )
+                    )->appendContent(
+                        new HtmlTag(
+                            'span',
+                            140,
+                            array(
+                                'class' => 'limit',
+                            )
+                        )
                     )
             )->appendContent(
                 HtmlFactory::divTag($this->buildComments())
