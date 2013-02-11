@@ -87,7 +87,7 @@ class ApiController extends RootController
 
         $result = AdvMySql::insertTable('chat')->insertData('time', time())
             ->insertData('name', $uid, 'string')
-            ->insertData('text', auto_link_text(htmlentities($text)), 'string')->execute();
+            ->insertData('text', auto_link_text(htmlspecialchars($text)), 'string')->execute();
 
         if ($result) {
             $msg = 'ok';
