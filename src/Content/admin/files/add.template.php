@@ -23,7 +23,7 @@
         <option value="all">All (does not require checkbox)</option>
         <option value="none" selected="selected">None</option>
     </select></label><br />
-    <label>Include the content in the Hub? <acronym title="No effect when All or None selected"><input type="checkbox" name="plus_hub" value="ttrue" /></acronym></label><br /><br />
+    <label>Include the content in the Hub? <acronym title="No effect when All or None selected"><input type="checkbox" name="plus_hub" value="true" /></acronym></label><br /><br />
     <h4>Notice</h4>
     <p>You should only upload the proper media types to the specified location! e.g. into the gallery you should only upload images and into media (audio) only audio files.</p>
     <p>Else you are going to have trouble getting the content displayed!</p>
