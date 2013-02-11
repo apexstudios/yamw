@@ -7,7 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Yamw' => $baseDir . '/src/',
-    'YamwLibs' => $$vendorDir . '/yamw/yamwlib/src/',
+    'YamwLibs' => $vendorDir . '/yamw/yamwlib/src/',
     'Symfony\\Component\\Yaml' => $vendorDir . '/symfony/yaml/',
     'Symfony\\Component\\HttpKernel' => $vendorDir . '/symfony/http-kernel/',
     'Symfony\\Component\\HttpFoundation' => $vendorDir . '/symfony/http-foundation/',
