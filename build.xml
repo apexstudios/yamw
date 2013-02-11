@@ -97,7 +97,10 @@
  </target>
 
  <target name="phpunit" description="Run unit tests with PHPUnit">
-  <exec executable="${basedir}/phpunit.bat" failonerror="false"/>
+  <exec executable="${basedir}/phpunit.bat" failonerror="false">
+    <arg value="-c" />
+    <arg path="phpunit-ci.xml.dist" />
+  </exec>
  </target>
 
  <target name="phpdoc2" description="Generate documentation">
