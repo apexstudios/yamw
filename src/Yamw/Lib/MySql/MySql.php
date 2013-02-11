@@ -242,6 +242,10 @@ class MySql
      */
     private function query($query)
     {
+        $profiler = Profiler::getInstance();
+
+        $profilerId = $profiler->sqlProfiler($this->query);
+
         $t = $this->conn->query($query);
         if ($this->conn->error) {
             throw new \Yamw\Lib\Exceptions\MySqlException($this->conn->error, $query);
@@ -253,6 +257,8 @@ class MySql
 
         global $num_queries;
         $num_queries++;
+
+        $profiler->stopProfiler($profilerId);
 
         return $t;
     }

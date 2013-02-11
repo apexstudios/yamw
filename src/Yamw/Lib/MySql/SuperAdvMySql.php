@@ -2,6 +2,7 @@
 namespace Yamw\Lib\MySql;
 
 use Yamw\Lib\Config;
+use YamwLibs\Infrastructure\Profiler\Profiler;
 
 abstract class SuperAdvMySql
 {
@@ -46,6 +47,11 @@ abstract class SuperAdvMySql
     public function execute()
     {
         $this->generateQuery();
+
+        $profiler = Profiler::getInstance();
+
+        $profilerId = $profiler->sqlProfiler($this->query);
+
         $result = self::$conn->query($this->query);
 
         if (preg_match('/AdvMySql_getTable$/', get_class($this))) {
@@ -57,6 +63,8 @@ abstract class SuperAdvMySql
             global $num_queries;
             $num_queries++;
         }
+
+        $profiler->stopProfiler($profilerId);
 
         if (self::$conn->error) {
             throw new \Yamw\Lib\Exceptions\MySqlException(self::$conn->error, $this->query);
