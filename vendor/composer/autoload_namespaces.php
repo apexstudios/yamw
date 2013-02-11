@@ -6,8 +6,8 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'YamwLibs' => $baseDir . '/vendor/yamw/yamwlib/src/',
     'Yamw' => $baseDir . '/src/',
-    'YamwLibs' => $vendorDir . '/yamw/yamwlib/src/',
     'Symfony\\Component\\Yaml' => $vendorDir . '/symfony/yaml/',
     'Symfony\\Component\\HttpKernel' => $vendorDir . '/symfony/http-kernel/',
     'Symfony\\Component\\HttpFoundation' => $vendorDir . '/symfony/http-foundation/',
@@ -18,8 +18,8 @@ return array(
     'PHPParser' => $vendorDir . '/nikic/php-parser/lib/',
     'Monolog' => $vendorDir . '/monolog/monolog/src/',
     'Modules' => $baseDir . '/src/',
-    'Custom' => $baseDir . '/src/',
     'Guzzle\\Tests' => $vendorDir . '/guzzle/guzzle/tests/',
     'Guzzle' => $vendorDir . '/guzzle/guzzle/src/',
+    'Custom' => $baseDir . '/src/',
     'Aws' => $vendorDir . '/aws/aws-sdk-php/src/',
 );
