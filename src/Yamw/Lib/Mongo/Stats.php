@@ -61,7 +61,8 @@ final class Stats
                 'global_request' => $_REQUEST,
                 'global_get' => $_GET,
                 'global_cookies' => $_COOKIE,
-                'global_server' => $_SERVER
+                'global_server' => $_SERVER,
+                'profilers' => \YamwLibs\Infrastructure\Profiler\Profiler::getInstance()->getAllProfilers()
             )
         );
     }
