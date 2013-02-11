@@ -5,12 +5,6 @@ class AdvMySql_insertTable extends SuperAdvMySql
 {
     private $data = array();
 
-    public function __construct($name)
-    {
-        parent::__construct($name);
-        return $this;
-    }
-
     public function insertData($column, $data, $data_type = 'raw')
     {
         $this->data[$column] = array('data' => $data, 'data_type' => $data_type, 'type' => 'data');
