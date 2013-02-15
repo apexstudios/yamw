@@ -316,7 +316,7 @@ return array(
     'Yamw\\Lib\\Interfaces\\ModelInterface' => $baseDir . '/src/Yamw/Lib/Interfaces/ModelInterface.php',
     'Yamw\\Lib\\Interfaces\\ModelizerInterface' => $baseDir . '/src/Yamw/Lib/Interfaces/ModelizerInterface.php',
     'Yamw\\Lib\\Loaders\\CliLoader' => $baseDir . '/src/Yamw/Lib/Loaders/CliLoader.php',
-    'Yamw\\Lib\\Loaders\\ModuleLoader' => $baseDir . '/src/Yamw/Lib/Loaders/ModuleLoader.php.REMOTE.php',
+    'Yamw\\Lib\\Loaders\\ModuleLoader' => $baseDir . '/src/Yamw/Lib/Loaders/ModuleLoader.php',
     'Yamw\\Lib\\Menu' => $baseDir . '/src/Yamw/Lib/Menu.php',
     'Yamw\\Lib\\MenuMgr' => $baseDir . '/src/Yamw/Lib/MenuMgr.php',
     'Yamw\\Lib\\Meta' => $baseDir . '/src/Yamw/Lib/Meta.php',
