@@ -25,6 +25,7 @@
     <whitelist addUncoveredFilesFromWhitelist="true">
       <directory suffix=".php">src</directory>
       <exclude>
+        <directory suffix="Test.php">src</directory>
         <file>src/index.php</file>
         <file>src/mongodbadmin.php</file>
         <file>src/test.php</file>
