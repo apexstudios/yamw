@@ -145,35 +145,35 @@ class XmlTagTest extends AbstractMarkupTest
         $inst = new $class($name, $content, $options);
 
         // String concatenation, since this should trigger the __toString method
-        $this->assertSame($output, ''.$inst);
+        $this->assertXmlStringEqualsXmlString($output, ''.$inst);
     }
     
     public function data_xml_test()
     {
         return array(
             array(
-                "    <a href=\"hallo\"></a>\n",
+                "<a href=\"hallo\"></a>",
                 'a', '',
                 array('href' => 'hallo')
             ),
             array(
-                "    <a href=\"hallo\">linktext</a>\n",
+                "<a href=\"hallo\">linktext</a>",
                 'a', 'linktext',
                 array('href' => 'hallo')
             ),
             array(
-                "    <a href link tag></a>\n",
+                "<a href=\"I'm cool\" link=\"I'm link\" tag=\"Something else\"></a>",
                 'a', '',
-                array('href', 'link', 'tag')
+                array('href' => 'I\'m cool', 'link' => 'I\'m link', 'tag' => 'Something else')
             ),
             array(
-                "    <a>    <span>Hallo</span>\n</a>\n",
+                "<a><span>Hallo</span>\n</a>",
                 'a',
                 new XmlTag('span', 'Hallo'),
                 array()
             ),
             array(
-                "    <img src=\"pr0n\" />\n",
+                "<img src=\"pr0n\" />",
                 'img', null,
                 array('src' => 'pr0n')
             )
