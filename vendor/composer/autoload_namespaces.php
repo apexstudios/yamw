@@ -8,18 +8,9 @@ $baseDir = dirname($vendorDir);
 return array(
     'YamwLibs' => $baseDir . '/vendor/yamw/yamwlib/src/',
     'Yamw' => $baseDir . '/src/',
-    'Symfony\\Component\\Yaml' => $vendorDir . '/symfony/yaml/',
-    'Symfony\\Component\\HttpKernel' => $vendorDir . '/symfony/http-kernel/',
-    'Symfony\\Component\\HttpFoundation' => $vendorDir . '/symfony/http-foundation/',
-    'Symfony\\Component\\EventDispatcher' => $vendorDir . '/symfony/event-dispatcher/',
-    'Symfony\\Component\\DependencyInjection' => $vendorDir . '/symfony/dependency-injection/',
-    'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs',
     'Selenium' => $baseDir . '/Selenium/',
     'PHPParser' => $vendorDir . '/nikic/php-parser/lib/',
     'Monolog' => $vendorDir . '/monolog/monolog/src/',
     'Modules' => $baseDir . '/src/',
-    'Guzzle\\Tests' => $vendorDir . '/guzzle/guzzle/tests/',
-    'Guzzle' => $vendorDir . '/guzzle/guzzle/src/',
     'Custom' => $baseDir . '/src/',
-    'Aws' => $vendorDir . '/aws/aws-sdk-php/src/',
 );

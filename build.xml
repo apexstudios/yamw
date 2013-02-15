@@ -97,9 +97,16 @@
  </target>
 
  <target name="phpunit" description="Run unit tests with PHPUnit">
-  <exec executable="${basedir}/phpunit.bat" failonerror="false">
+  <exec executable="phpunit.bat" failonerror="false">
     <arg value="-c" />
     <arg path="phpunit-ci.xml.dist" />
+  </exec>
+ </target>
+
+ <target name="seleniumunit" description="Run selenium tests with PHPUnit">
+  <exec executable="phpunit.bat" failonerror="false">
+    <arg value="-c" />
+    <arg path="seleniumunit.xml.dist" />
   </exec>
  </target>
 
