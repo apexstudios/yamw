@@ -51,6 +51,5 @@ var cur_uname = '{CURUSER_NAME}';
         <div class="content" id="content">{CHAT}</div>
     </div>
 {JS_END}
-{JS_NOTICES}
 </body>
 </html>
