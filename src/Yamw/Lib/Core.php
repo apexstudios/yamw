@@ -16,26 +16,6 @@ class Core
     protected $module;
     protected $action;
     protected $section;
-
-    /**
-     * @deprecated
-     * @var bool
-     */
-    protected $render_template = true;
-
-    /**
-     * @deprecated
-     * @var bool
-     */
-    protected $save_stats = true;
-
-    /**
-     * The current used template
-     *
-     * @deprecated
-     * @var string
-     */
-    protected $current_template;
     protected $current_route;
     public $page;
 
@@ -219,8 +199,6 @@ class Core
     {
         ob_start();
         ob_implicit_flush(0);
-
-        global $UAM, $MySql, $Config, $Routes, $Request;
 
         if (!$modules) {
             $modules = $this->module;
