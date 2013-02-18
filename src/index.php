@@ -6,9 +6,10 @@
  * @version SVN: $Revision$
  */
 
-use \Yamw\Lib\Core;
-use \Yamw\Lib\Templater\Templater;
-use \Yamw\Lib\Mongo\Stats;
+use Yamw\Lib\Core;
+use Yamw\Lib\Mongo\Stats;
+use YamwLibs\Infrastructure;
+use YamwLibs\Infrastructure\Templater\Templater;
 
 global $start_time;
 $start_time = microtime(true);
@@ -27,8 +28,14 @@ useHelper('Forward');
 useHelper('Security');
 useHelper('BBCode');
 
+Infrastructure\Config\Config::setConfigPath(path("config/config.php"));
+Templater::setTemplatePrefix(path("Templates/"));
+$markupMgr = new Infrastructure\Templater\MarkupManager;
+
 Core::getInstance()->register();
 
+Custom\Templater\MarkupRegistrar::registerMarkups($markupMgr);
+Templater::setMarkupMgr($markupMgr);
 Templater::generateTemplate();
 echo Templater::retrieveTemplate();
 

@@ -1,7 +1,7 @@
 <?php
 namespace Yamw\Lib;
 
-use Yamw\Lib\Templater\Templater;
+use YamwLibs\Infrastructure\Templater\Templater;
 
 class Core
 {

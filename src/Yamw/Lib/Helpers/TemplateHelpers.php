@@ -2,7 +2,7 @@
 use Yamw\Lib\Core;
 use Yamw\Lib\Mongo\Stats;
 use Yamw\Lib\TemplateHelper;
-use Yamw\Lib\Templater\Templater;
+use YamwLibs\Infrastructure\Templater\Templater;
 
 function noTemplate()
 {

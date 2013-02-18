@@ -33,7 +33,7 @@ final class Stats
         }
 
         global $num_queries, $Config, $Processer, $statgroup;
-        $current_template = \Yamw\Lib\Templater\Templater::getCurrentTemplate();
+        $current_template = \YamwLibs\Infrastructure\Templater\Templater::getCurrentTemplate();
 
         if (!static::statGroup() && $current_template == 'nt') {
             static::statGroup('nt');
