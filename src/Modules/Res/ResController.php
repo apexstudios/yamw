@@ -7,20 +7,14 @@ use Yamw\Modules\RootController;
 /**
  * Description of newPHPClass
  *
- * @author AnhNhan
+ * @author AnhNhan <anhnhan@outlook.com>
+ * @package Modules
+ * @subpackage Res
  */
 class ResController extends RootController
 {
     public function indexAction()
     {
-        // End the current output buffer and start a gzip one if supported
-        /*ob_end_clean();
-        if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) {
-            ob_start("ob_gzhandler");
-        } else {
-            ob_start();
-        }*/
-
         noTemplate();
         dontSaveStats();
 
@@ -63,6 +57,9 @@ class ResController extends RootController
         } else {
             cache(2);
         }
+
+        println("/* ".$this->action." */", false);
+        println("/* ".$content['_id']." */", false);
         echo $content['content'];
     }
 
