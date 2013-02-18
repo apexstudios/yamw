@@ -111,25 +111,32 @@ class Core
             )
         );
 
+        // Remove the query url (after rewrite) from the URL
         $temp_page = str_replace(Request::get('server-query_string'), '', Request::get('server-request_uri'));
+        // Remove the script filename itself
         $temp_page = str_replace(basename(Request::get('server-php_self')), '', $temp_page);
+
+        // Remove the base URL
+        // http://localhost.dev/yourapp/home/index => http://localhost.dev/yourapp
         $temp_page = str_replace($opage, '', $temp_page);
         $temp_page = str_replace($page, '', $temp_page);
 
         // If we pass additional url parameters, they shouldn't appear in the base url
-        $temp_page = preg_replace("/(.*?)\?.*+/i", '$1', $temp_page);
-        $temp_page = preg_replace("/(.*?)&.*+/i", '$1', $temp_page);
+        // /home/index?bla=2hi => /home/index
+        $temp_page = preg_replace("/(.*?)\?.*?$/i", '$1', $temp_page);
+        $temp_page = preg_replace("/(.*?)&.*?$/i", '$1', $temp_page);
 
         $temp_page = str_replace("\n", '', $temp_page);
 
-        if (!$temp_page) {
+        if (!$temp_page) { // Empty query string
             $temp_page = '/';
-        }
-        if (!preg_match('/\/$/si', $temp_page)) {
-            $temp_page .= '/';
-        }
-        if (!preg_match('/^\//si', $temp_page)) {
-            $temp_page = '/'.$temp_page;
+        } else {
+            if (!preg_match('/\/$/si', $temp_page)) { // No trailing slash
+                $temp_page .= '/';
+            }
+            if (!preg_match('/^\//si', $temp_page)) { // No slash at beginning
+                $temp_page = '/'.$temp_page;
+            }
         }
 
         $host = Request::get('server-http_host');
