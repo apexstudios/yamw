@@ -50,7 +50,7 @@ class ResController extends RootController
             }
             $content = ResMgr::requestResource($compiler->compile());
         }
-        // println($content['_id']);
+
         lastModified($content['timestamp']->sec, $content['_id']);
         if ($this->action) {
             cache(720);

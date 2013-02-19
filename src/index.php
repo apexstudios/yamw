@@ -7,6 +7,7 @@
  */
 
 use Yamw\Lib\Core;
+use Yamw\Lib\TemplateHelper;
 use Yamw\Lib\Mongo\Stats;
 use YamwLibs\Infrastructure;
 use YamwLibs\Infrastructure\Templater\Templater;
@@ -27,6 +28,10 @@ useHelper('Template');
 useHelper('Forward');
 useHelper('Security');
 useHelper('BBCode');
+
+$constant_map = include path('constant_map.php');
+TemplateHelper::use_style('res/css/'.($constant_map['css_hash'] ?: rand_string()));
+TemplateHelper::use_js('res/js/'.($constant_map['js_hash'] ?: rand_string()));
 
 Infrastructure\Config\Config::setConfigPath(path("config/config.php"));
 Templater::setTemplatePrefix(path("Templates/"));
