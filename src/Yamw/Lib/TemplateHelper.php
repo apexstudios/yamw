@@ -55,7 +55,7 @@ class TemplateHelper
         }
 
         foreach (static::$stylesheets as $key => $value) {
-            echo "        <link rel=\"stylesheet\" type=\"text/css\" href=\"${value}\" />\n";
+            echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"${value}\" />\n";
         }
 
         static::$stylesheets = array();
