@@ -1,16 +1,34 @@
 {
-	"require": {
-		"monolog/monolog": "1.2.*",
-		"nikic/php-parser": "*",
-        "leafo/lessphp": "0.3.8"
-	},
-	"autoload": {
-		"psr-0": {
-			"Yamw":	"src/",
-			"YamwLibs":	"vendor/yamw/yamwlib/src/",
-			"Modules": "src/",
+    "name": "apexstudios/yamw",
+    "description": "An MVC application Framework. Under heavy construction.",
+    "homepage": "http://github.com/apexstudios/yamw",
+    "keywords": ["mvc", "application", "framework", "php", "oo"],
+    "authors": [
+        {
+            "name": "Anh Nhan Nguyen",
+            "email": "anhnhan@outlook.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "monolog/monolog": "1.2.*",
+        "nikic/php-parser": "*",
+        "leafo/lessphp": "0.3.8",
+        "apexstudios/yamwlib": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Yamw":	"src/",
+            "Modules": "src/",
             "Selenium": "Selenium/",
-			"Custom": "src/"
-		}
-	}
+            "Custom": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/apexstudios/yamwlib"
+        }
+    ]
 }
