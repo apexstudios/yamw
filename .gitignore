@@ -6,6 +6,7 @@ src/test2.php
 src/t.php
 src/t2.php
 src/mongodbadmin.php
+/vendor/
 nbproject
 *.php~
 #*.php#
