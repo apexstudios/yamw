@@ -325,18 +325,6 @@ function contenttype($val = 'text/html', $char = 'UTF-8')
     @header('Content-type: '.$val.($char ? '; charset='.$char : ''));
 }
 
-/**
- * Encodes a.k.a. reverses an e-mail address
- *
- * @param string $val The e-mail address to be reversed
- *
- * @return string
- */
-function encodeMail($val)
-{
-    return strrev($val);
-}
-
 function encodeFilename($name, $dir = false)
 {
     if ($dir) {
@@ -350,40 +338,6 @@ function encodeFilename($name, $dir = false)
         $name = str_replace('.'.$ext, '', $name);
         return str_replace($except, '_', $name).'.'.$ext;
     }
-}
-
-/**
- * Converts _name_ into a thumbnail path, optionally containing _extra_.
- *
- * @param string $name
- *         Path that is being converted into a thumbnail path
- * @param string $extra
- *         An extra that is being added to the file name
- *         of the thumbnail for further differentiation.
- * @param string $subfolder
- *         The subfolder where the thumbnail should reside in.
- */
-function getThumbPath($name, $extra = '', $subfolder = 'thumbs')
-{
-    $except = array('\\', ':', '*', '?', '"', '<', '>', '|', '.', ' ');
-    $ret = explode('.', $name);
-    $ext = $ret[substr_count($name, '.')];
-
-    if ($extra) {
-        $extra = $extra.'.';
-    }
-
-    $name = str_replace('.'.$ext, '', $name);
-
-    if ($subfolder) {
-        $subfolder .= '/';
-    }
-
-    $name = explode('/', $name);
-    $name[count($name)-1] = $subfolder.$name[count($name)-1];
-    $name = implode('/', $name);
-
-    return str_replace($except, '_', $name).'.thumb.'.$extra.$ext;
 }
 
 /**
@@ -582,35 +536,6 @@ function getTimeLabel($time, $now = null)
         return ($diff/60/60/24/7%60).' weeks before';
     } else {
         return date(DATE_ANH_NHAN, $time);
-    }
-}
-
-function getAjaxErrorHandling($return = true)
-{
-    if ($return) {
-        ob_start();
-    }
-    echo 'function (x, e) {
-                    if(x.status == 0)
-                        $.noticeAdd({text: "You are offline! Please check your network!"'.
-                        ', type: "error"});
-                    else if (x.status == 404)
-                        $.noticeAdd({text: "Requested URL not found!", type: "error"});
-                    else if (x.status == 403)
-                        $.noticeAdd({text: "You did not have sufficient permission'.
-                        ' to do what you wanted...", type: "error"});
-                    else if (x.status == 500)
-                        $.noticeAdd({text: "Server-side error!", type: "error"});
-                    else if (x.status == "parseerror")
-                        $.noticeAdd({text: "Error parsing response from server!", type: "error"});
-                    else if(x.status == "timeout")
-                        $.noticeAdd({text: "Network timeout!", type: "error"});
-                    else
-                        $.noticeAdd({text: "Unknown Error! "+x.responseText, type: "error"});
-                }';
-
-    if ($return) {
-        return ob_get_clean();
     }
 }
 
