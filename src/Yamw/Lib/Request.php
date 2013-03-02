@@ -2,7 +2,9 @@
 namespace Yamw\Lib;
 
 /**
- * The Request object holds all data associated with the http request
+ * A request object contains all information passed over by an external request,
+ * be it Http or an internal request like when including a module within another
+ * module.
  *
  * @author AnhNhan <anhnhan@outlook.com>
  * @package Yamw
@@ -10,16 +12,17 @@ namespace Yamw\Lib;
  */
 class Request
 {
-    private static $params = array();
+    private $params = array();
 
     /**
      * Populates the Request with the $params passed to it and, if applicable,
-     * loads the default values for request information that has not been passed over
+     * loads the default values for request information that has not been passed
+     * over
      *
      * @since 3.0
      * @param array $params
      */
-    public static function init(array $params = array())
+    public function init(array $params = array())
     {
         if (!$params) {
             $params = array(
@@ -42,58 +45,66 @@ class Request
         }
 
         if (isset($_COOKIE['mybb_sid'])) {
-            $params['c-sid'] = $_COOKIE['mybb_sid'];
+            $params['cookie-sid'] = $_COOKIE['mybb_sid'];
         } else {
-            $params['c-sid'] = false;
+            $params['cookie-sid'] = false;
         }
 
-        static::$params = $params;
+        $this->populate($params);
     }
 
     /**
-     * Assigns the passed data to the local key-value store, overwriting any existing
-     * entries.
+     * Assigns the passed data to the local key-value store, overwriting any
+     * existing entries.
      *
      * @param array $data
      * @since 5.0
      */
-    private static function populate(array $data)
+    private function populate(array $data)
     {
         foreach ($data as $key => $value) {
-            static::$params[$key] = $value;
+            $this->params[$key] = $value;
         }
     }
 
-    private static function populatePrefix(array $global, $prefix = 'get')
+    /**
+     * Populates the stack with an array of parameters, which keys will get
+     * receive a prefix
+     *
+     * @param array $global
+     * @param string $prefix
+     */
+    private function populatePrefix(array $global, $prefix = 'get')
     {
         $data = array();
 
         foreach ($global as $key => $value) {
-            $data[$prefix.'-'.strtolower($key)] = $value;
+            $data[$prefix . '-' . strtolower($key)] = $value;
         }
 
-        static::populate($data);
+        $this->populate($data);
     }
 
-    private static function populateSuperGlobal(
+    private function populateSuperGlobal(
         array $global,
         $prefix = 'get',
         array $populate_objects = null
     ) {
         if (!$populate_objects) {
-            static::populatePrefix($global, $prefix);
+            $this->populatePrefix($global, $prefix);
         } else {
             $data = array();
 
             foreach ($populate_objects as $key => $value) {
                 if (is_numeric($key)) {
-                    $data[$value] = isset($global[$value]) ? $global[$value] : null;
+                    $data[$value] = isset($global[$value]) ?
+                        $global[$value] : null;
                 } else {
                     $data[$key] = isset($global[$key]) ? $global[$key] : $value;
                 }
             }
 
-            static::populatePrefix($data, $prefix);
+            $this->populatePrefix($data, $prefix);
         }
     }
 
@@ -102,9 +113,9 @@ class Request
      *
      * @since 5.0
      */
-    public static function populateFromPost(array $populate_objects = null)
+    public function populateFromPost(array $populate_objects = null)
     {
-        static::populateSuperGlobal($_POST, 'post', $populate_objects);
+        $this->populateSuperGlobal($_POST, 'post', $populate_objects);
     }
 
     /**
@@ -112,9 +123,9 @@ class Request
      *
      * @since 5.0
      */
-    public static function populateFromGet(array $populate_objects = null)
+    public function populateFromGet(array $populate_objects = null)
     {
-        static::populateSuperGlobal($_GET, 'get', $populate_objects);
+        $this->populateSuperGlobal($_GET, 'get', $populate_objects);
     }
 
     /**
@@ -122,9 +133,14 @@ class Request
      *
      * @since 5.0
      */
-    public static function populateFromServer(array $populate_objects = null)
+    public function populateFromServer(array $populate_objects = null)
     {
-        static::populateSuperGlobal($_SERVER, 'server', $populate_objects);
+        $this->populateSuperGlobal($_SERVER, 'server', $populate_objects);
+    }
+
+    public function populateFromCookies(array $populate_objects = null)
+    {
+        $this->populateSuperGlobal($_COOKIE, 'cookie', $populate_objects);
     }
 
     /**
@@ -136,41 +152,48 @@ class Request
      *
      * @return multiptype: string|bool|number
      */
-    public static function get($name, $default_value = null)
+    public function getValue($name, $default_value = null)
     {
-        if (isset(static::$params[$name])) {
-            return static::$params[$name];
+        if (isset($this->params[$name])) {
+            return $this->params[$name];
         } else {
             // Invalid key
             return $default_value;
         }
     }
 
+    public function getValueInt($name, $default_value = null)
+    {
+        return (int)$this->getValue($name, $default_value);
+    }
+
     /**
      * Sets the key $name to the given $value
      *
      * @param string $name
-     * @param string $value
+     * @param mixed $value
+     * A scalar value
      */
-    public static function set($name, $value)
+    public function setValue($name, $value)
     {
         if (!is_scalar($value) && !is_null($value)) {
-            throw new \InvalidArgumentException('$value must be a "normal" value!');
+            throw new \InvalidArgumentException(
+                '$value must be a "normal" value!'
+            );
         }
 
-        static::$params[$name] = $value;
+        $this->params[$name] = $value;
     }
 
     /**
      * Returns whether a value has been associated with the given $name key
      *
-     * @since 5.0
      * @param string $name
      *
      * @return boolean
      */
-    public static function exists($name)
+    public function valueExists($name)
     {
-        return isset(static::$params[$name]);
+        return isset($this->params[$name]);
     }
 }
