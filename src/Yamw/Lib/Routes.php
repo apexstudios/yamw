@@ -6,6 +6,12 @@ class Routes
     private $uri;
     private $routes = array();
 
+    /**
+     *
+     * @var Request
+     */
+    private $request;
+
     public function __construct($url = '')
     {
         if (!$url) {
@@ -16,15 +22,26 @@ class Routes
         $this->initRoutes();
     }
 
+    public function setRequest(Request $request)
+    {
+        $this->request = $request;
+        return $this;
+    }
+
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
     public function buildRequestFromURIs()
     {
-        $request = $this->checkURIs();
+        $this->checkURIs();
 
-        if (!$request->valueExists('module')) {
+        if (!$this->request->valueExists('module')) {
             trigger_error('Seems like there was no matching route for ' . $this->uri);
         }
 
-        return $request;
+        return $this;
     }
 
     private function initRoutes()
@@ -34,27 +51,26 @@ class Routes
 
     private function checkURIs()
     {
-        $request = new Request();
+        $this->request = new Request();
         foreach ($this->routes as $route_name => $route) {
             if ($this->uri == $route->url) {
-                $request->init((array)$route->params->params);
-                break;
+                $this->request->populate((array)$route->params->params);
+                return;
             }
 
             $t = $this->checkURI($this->uri, $route);
             if ($t && is_array($t)) {
-                $t['current-route'] = $route->name;
-                $request->init($t);
+                $this->request->populate($t);
+
+                $this->request->setValue('current-route', $route->name);
 
                 // Soon deprecated
                 global $Processer;
                 $Processer->setRoute($route->name);
 
-                break;
+                return;
             }
         }
-
-        return $request;
     }
 
     private function checkURI($url, $route)

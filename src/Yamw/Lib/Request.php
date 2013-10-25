@@ -60,10 +60,10 @@ class Request
      * @param array $data
      * @since 5.0
      */
-    private function populate(array $data)
+    public function populate(array $data)
     {
         foreach ($data as $key => $value) {
-            $this->params[$key] = $value;
+            $this->setValue($key, $value);
         }
     }
 

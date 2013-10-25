@@ -82,17 +82,18 @@ class Core
 
         global $Routes;
 
-        $request1 = new Request();
-        $request1->populateFromGet(array('page'));
+        $Request = new Request();
+        $Request->init();
+        $Request->populateFromGet(array('page'));
 
-        $page = '/'.$request1->getValue('get-page');
+        $page = '/'.$Request->getValue('get-page');
         $opage = $page;
 
         preg_replace_callback('/^(.*?)(\.htm(l|)|\.php(3|4|5|s|)|\.jsp|\.asp(x)|)$/i',
         create_function('$matches', 'global $abc; $abc = $matches; return $matches[1];'), $page);
 
         $Routes = new Routes($page);
-        $Request = $Routes->buildRequestFromURIs();
+        $Routes->setRequest($Request)->buildRequestFromURIs();
 
         $this->action_string = explode('/', $page);
 
@@ -104,8 +105,7 @@ class Core
         $this->extension = $abc[1];
         $this->actionstring = trim($page, '/');
 
-        $request2 = new Request();
-        $request2->populateFromServer(
+        $Request->populateFromServer(
             array(
                 'QUERY_STRING' => '/',
                 'REQUEST_URI' => '/',
@@ -115,9 +115,9 @@ class Core
         );
 
         // Remove the query url (after rewrite) from the URL
-        $temp_page = str_replace($request2->getValue('server-query_string'), '', $request2->getValue('server-request_uri'));
+        $temp_page = str_replace($Request->getValue('server-query_string'), '', $Request->getValue('server-request_uri'));
         // Remove the script filename itself
-        $temp_page = str_replace(basename($request2->getValue('server-php_self')), '', $temp_page);
+        $temp_page = str_replace(basename($Request->getValue('server-php_self')), '', $temp_page);
 
         // Remove the base URL
         // http://localhost.dev/yourapp/home/index => http://localhost.dev/yourapp
@@ -142,16 +142,16 @@ class Core
             }
         }
 
-        $host = $request2->getValue('server-http_host');
+        $host = $Request->getValue('server-http_host');
         $this->page = "http://{$host}{$temp_page}";
 
         if (!preg_match('/\/$/si', $this->page)) {
             $this->page .= '/';
         }
 
-        $this->section = $request2->getValue('section');
-        $this->module = $request2->getValue('module');
-        $this->action = $request2->getValue('action');
+        $this->section = $Request->getValue('section');
+        $this->module = $Request->getValue('module');
+        $this->action = $Request->getValue('action');
 
         $this->init();
     }
