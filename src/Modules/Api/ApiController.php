@@ -43,6 +43,7 @@ class ApiController extends RootController
                 $this->comments();
                 break;
             case 'chat':
+                \Yamw\Lib\Mongo\Stats::dontSaveStats();
                 $this->chat();
                 break;
             default:
