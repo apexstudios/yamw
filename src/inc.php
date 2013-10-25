@@ -32,7 +32,7 @@ function getLogger($name = 'def', $col = 'yamw_monolog', $level = null)
     if (!isset($logger[$name])) {
         $logger[$name] = new Logger($name);
         if (!isset($handler)) {
-            $handler = new MongoDBHandler(AdvMongo::getConn(false), Config::get('mongo.dbname'), 'yamw_monolog', $level, true);
+            $handler = new MongoDBHandler(AdvMongo::getConn()->selectCollection('yamw_monolog'), $level, true);
         }
         $logger[$name]->pushHandler($handler);
         if (@DEBUG) {
