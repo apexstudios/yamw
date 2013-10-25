@@ -11,7 +11,7 @@ class AdvMongo
      * @return \MongoDB
      * @throws Exception
      */
-    public static function getConn($db = true)
+    public static function getConn($auto_db = true)
     {
         if (!isset(self::$conn)) {
             try {
@@ -22,8 +22,6 @@ class AdvMongo
                 if (!self::$conn) {
                     throw new Exception('could not establish Mongo Connection. Missing PHP Driver?');
                 }
-                $dbn = Config::get('mongo.dbname');
-                self::$conn =& self::$conn;
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
@@ -31,7 +29,7 @@ class AdvMongo
 
         global $num_queries;
         $num_queries++;
-        return $db ? self::$conn->$dbn : self::$conn;
+        return $auto_db ? self::$conn->selectDB(Config::get('mongo.dbname')) : self::$conn;
     }
 
     private function __construct()
