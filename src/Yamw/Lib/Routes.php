@@ -66,7 +66,7 @@ class Routes
 
                 // Soon deprecated
                 global $Processer;
-                $Processer->setRoute($route->name);
+                $Processer->setRoute((string)$route->name);
 
                 return;
             }
