@@ -94,6 +94,7 @@ class Core
 
         $Routes = new Routes($page);
         $Routes->setRequest($Request)->buildRequestFromURIs();
+        $Request = $Routes->getRequest();
 
         $this->action_string = explode('/', $page);
 
