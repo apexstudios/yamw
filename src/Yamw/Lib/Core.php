@@ -92,6 +92,7 @@ class Core
         create_function('$matches', 'global $abc; $abc = $matches; return $matches[1];'), $page);
 
         $Routes = new Routes($page);
+        $Request = $Routes->buildRequestFromURIs();
 
         $this->action_string = explode('/', $page);
 

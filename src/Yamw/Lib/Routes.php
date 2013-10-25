@@ -3,7 +3,7 @@ namespace Yamw\Lib;
 
 class Routes
 {
-    private $url;
+    private $uri;
     private $routes = array();
 
     public function __construct($url = '')
@@ -12,13 +12,19 @@ class Routes
             $url = '/';
         }
 
-        $this->url = $url;
+        $this->uri = $url;
         $this->initRoutes();
-        $this->checkURLs();
+    }
 
-        if (!Request::exists('module')) {
-            trigger_error('Seems like there was no matching route for '.$url);
+    public function buildRequestFromURIs()
+    {
+        $request = $this->checkURIs();
+
+        if (!$request->valueExists('module')) {
+            trigger_error('Seems like there was no matching route for ' . $this->uri);
         }
+
+        return $request;
     }
 
     private function initRoutes()
@@ -26,27 +32,34 @@ class Routes
         $this->routes = simplexml_load_file(path('/config/routes.xml'));
     }
 
-    private function checkURLs()
+    private function checkURIs()
     {
+        $request = new Request();
         foreach ($this->routes as $route_name => $route) {
-            if ($this->url == $route->url) {
-                Request::init((array)$route->params->params);
-                return;
+            if ($this->uri == $route->url) {
+                $request->init((array)$route->params->params);
+                break;
             }
 
-            $t = $this->checkURL($this->url, $route);
+            $t = $this->checkURI($this->uri, $route);
             if ($t && is_array($t)) {
-                $Request = Request::init($t);
+                $t['current-route'] = $route->name;
+                $request->init($t);
+
+                // Soon deprecated
                 global $Processer;
                 $Processer->setRoute($route->name);
-                return;
+
+                break;
             }
         }
+
+        return $request;
     }
 
-    private function checkURL($url, $route)
+    private function checkURI($url, $route)
     {
-        $pattern = (preg_match('/\/$/i', (string)$route->url)) ? (string)$route->url : (string)$route->url.'/';
+        $pattern = (preg_match('/\/$/i', (string)$route->uri)) ? (string)$route->uri : (string)$route->uri.'/';
         $url = (preg_match('/\/$/i', $url)) ? $url : $url.'/';
         $url = preg_replace('/\/nt\/$/i', '/', $url);
 
