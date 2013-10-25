@@ -1,8 +1,6 @@
 <?php
 namespace Yamw\Lib\Loaders;
 
-use Yamw\Lib\Request;
-
 /**
  * The ModuleLoader class
  * @author AnhNhan <anhnhan@outlook.com>
@@ -74,18 +72,18 @@ class ModuleLoader
 
         // If it exists, load the Section configuration
         $sectionConfig = 'Content/'.$section.'/Section.config.php';
-        if(file_exists($sectionConfig)) {
+        if(file_exists(path($sectionConfig))) {
             include_once path($sectionConfig);
         }
         // If it exists, load the Module configuration
         $moduleConfig = 'Content/'.$section.'/'.$module.'/Module.config.php';
-        if(file_exists($moduleConfig)) {
+        if(file_exists(path($moduleConfig))) {
             include_once path($moduleConfig);
         }
 
         // Load and execute the action
         $actionPath = 'Content/'.$section.'/'.$module.'/'.$action.'.action.php';
-        if(file_exists($actionPath)) {
+        if(file_exists(path($actionPath))) {
             include path($actionPath);
         } else {
             throw new \Yamw\Lib\Exceptions\HttpErrorException("The action $action was not found!", 404);
@@ -93,7 +91,7 @@ class ModuleLoader
 
         // Load the module content itself
         $modulePath = 'Content/'.$section.'/'.$module.'/'.$action.'.template.php';
-        if(file_exists($modulePath)) {
+        if(file_exists(path($modulePath))) {
             include path($modulePath);
         } else {
             throw new \Yamw\Lib\Exceptions\HttpErrorException("The module $module was not found!", 404);
