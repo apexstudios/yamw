@@ -183,8 +183,6 @@ class Modelizer
         } else {
             $this->queryMySql();
         }
-
-        $this->query2Array();
     }
 
     private function queryMySql()
