@@ -1,2 +1,2 @@
 #!/bin/sh
-php src/index.php --color $@
+php src/webroot/index.php --color $@
