@@ -8,7 +8,7 @@ namespace Yamw\Lib\Assertions;
  */
 class FileAssertions extends BasicAssertions
 {
-    public static function assertFileExists($path, $msg)
+    public static function assertFileExists($path, $msg = null)
     {
         if (file_exists(path($path)) && is_file(path($path))) {
             return true;
@@ -22,7 +22,7 @@ class FileAssertions extends BasicAssertions
         }
     }
 
-    public static function assertFileNotExists($path, $msg)
+    public static function assertFileNotExists($path, $msg = null)
     {
         if (!file_exists(path($path)) && is_file(path($path))) {
             return true;
@@ -36,7 +36,7 @@ class FileAssertions extends BasicAssertions
         }
     }
 
-    public static function assertFileWritable($path, $msg)
+    public static function assertFileWritable($path, $msg = null)
     {
         if (is_writable(path($path)) && is_file(path($path))) {
             return true;
@@ -50,7 +50,7 @@ class FileAssertions extends BasicAssertions
         }
     }
 
-    public static function assertFileReadable($path, $msg)
+    public static function assertFileReadable($path, $msg = null)
     {
         if (is_readable(path($path)) && is_file(path($path))) {
             return true;
@@ -64,7 +64,7 @@ class FileAssertions extends BasicAssertions
         }
     }
 
-    public static function assertFileExecutable($path, $msg)
+    public static function assertFileExecutable($path, $msg = null)
     {
         if (is_executable(path($path)) && is_file(path($path))) {
             return true;
@@ -78,7 +78,7 @@ class FileAssertions extends BasicAssertions
         }
     }
 
-    public static function assertFileHasExtension($path, $msg)
+    public static function assertFileHasExtension($path, $msg = null)
     {
         if (count(explode('.', basename(path($path)))) >= 1 && is_file(path($path))) {
             return true;
@@ -108,7 +108,7 @@ class FileAssertions extends BasicAssertions
         }
     }
 
-    public static function assertIsFile($path, $msg)
+    public static function assertIsFile($path, $msg = null)
     {
         if (is_file(path($path))) {
             return true;
@@ -131,7 +131,7 @@ class FileAssertions extends BasicAssertions
      * @param type $msg
      * @return boolean
      */
-    public static function assertIsUploadedFile($path, $msg)
+    public static function assertIsUploadedFile($path, $msg = null)
     {
         if (is_uploaded_file($path) && is_file(path($path))) {
             return true;
@@ -145,7 +145,7 @@ class FileAssertions extends BasicAssertions
         }
     }
 
-    public static function assertIsSymlink($path, $msg)
+    public static function assertIsSymlink($path, $msg = null)
     {
         if (is_link(path($path))) {
             return true;
@@ -159,7 +159,7 @@ class FileAssertions extends BasicAssertions
         }
     }
 
-    public static function assertIsDirectory($path, $msg)
+    public static function assertIsDirectory($path, $msg = null)
     {
         if (is_dir(path($path))) {
             return true;
@@ -173,7 +173,7 @@ class FileAssertions extends BasicAssertions
         }
     }
 
-    public static function assertDirectoryExists($path, $msg)
+    public static function assertDirectoryExists($path, $msg = null)
     {
         if (file_exists(path($path)) && is_dir(oath($path))) {
             return true;
@@ -187,7 +187,7 @@ class FileAssertions extends BasicAssertions
         }
     }
 
-    public static function assertNotExists($path, $msg)
+    public static function assertNotExists($path, $msg = null)
     {
         if (!file_exists(path($path))) {
             return true;
@@ -201,7 +201,7 @@ class FileAssertions extends BasicAssertions
         }
     }
 
-    public static function assertDirectoryWritable($path, $msg)
+    public static function assertDirectoryWritable($path, $msg = null)
     {
         if (is_writeable(path($path)) && is_dir(path($path))) {
             return true;
