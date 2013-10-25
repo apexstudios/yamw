@@ -54,7 +54,7 @@ class Routes
         $this->request = new Request();
         foreach ($this->routes as $route_name => $route) {
             if ($this->uri == $route->url) {
-                $this->request->populate((array)$route->params->params);
+                $this->request->populate((array)$route->params);
                 return;
             }
 
@@ -62,7 +62,7 @@ class Routes
             if ($t && is_array($t)) {
                 $this->request->populate($t);
 
-                $this->request->setValue('current-route', $route->name);
+                $this->request->setValue('current-route', (string)$route->name);
 
                 // Soon deprecated
                 global $Processer;
@@ -75,32 +75,34 @@ class Routes
 
     private function checkURI($url, $route)
     {
-        $pattern = (preg_match('/\/$/i', (string)$route->uri)) ? (string)$route->uri : (string)$route->uri.'/';
+        $routeUri = (string)$route->url;
+        $pattern = (preg_match('/\/$/i', $routeUri)) ? $routeUri : $routeUri.'/';
+
+        // Strip off trailing slashes
         $url = (preg_match('/\/$/i', $url)) ? $url : $url.'/';
+        // Strip off '/nt' from the end
         $url = preg_replace('/\/nt\/$/i', '/', $url);
 
-        $t1 = explode('/', $pattern);
-        $t2 = explode('/', $url);
+        $patternParts = explode('/', $pattern);
+        $uriParts = explode('/', $url);
 
         // Not same amount of elements, thus never could match
         // We now hereby save a lot of resources by skipping this loop sequence
-        if (count($t1) != count($t2)) {
+        if (count($patternParts) != count($uriParts)) {
             return false;
         }
 
         $ret = array();
 
-        foreach ($t1 as $k => $t) {
-            if (preg_match('/^:.*?/', $t)) {
-                // It's a variable
-                $ret[ltrim($t, ':')] = $t2[$k];
-            } else {
-                // It's not a variable
-                if ($t != $t2[$k]) {
+        foreach ($patternParts as $partIndex => $partPattern) {
+            if (preg_match('/^:.*?/', $partPattern)) { // It's a variable
+                $ret[ltrim($partPattern, ':')] = $uriParts[$partIndex];
+            } else { // It's not a variable
+                if ($partPattern != $uriParts[$partIndex]) {
                     // String does not match
                     return false;
                 } else {
-                    $ret[$k] = $t;
+                    $ret[$partIndex] = $partPattern;
                 }
             }
         }
