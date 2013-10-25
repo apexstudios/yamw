@@ -12,7 +12,7 @@ function hasToBeAdmin()
         throw new AuthenticationException("Security breach detected. Access has been
             restricted in accordance to UNSC Security Act [Section III Paragraph 433].
 The violence of the given paragraph has been logged and will be prosecuted with
-            all applicable laws.", 'admin');
+            all applicable laws.");
     }
 }
 
@@ -23,6 +23,6 @@ The violence of the given paragraph has been logged and will be prosecuted with
 function hasToBeLoggedIn()
 {
     if (!UAM::getInstance()->isLoggedIn()) {
-        throw new AuthenticationException("You are apparently not logged in!", 'user');
+        throw new AuthenticationException("You are apparently not logged in!");
     }
 }
