@@ -10,6 +10,18 @@ class Gallery
 
     public static function getSection($section = "all")
     {
+        // TMP
+        $query = array(
+            'metadata.section' => new \MongoRegex("/$section|all/")
+        );
+
+        return AdvMongo::gridFs('gallery')->find(
+            $query
+        )->sort(array('uploadDate' => -1));
+
+
+
+
         if (strncmp('hub', $section, 3)) {
             $query = array(
                 '$or' => array(
