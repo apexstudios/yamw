@@ -112,15 +112,14 @@ class ModuleLoader
 
     protected function loadModule()
     {
-        $module = $this->target;
+        $moduleName = functionify($this->target);
         $action = $this->action;
 
-        $module = functionify($module);
-        $moduleClass = "\\Modules\\{$module}\\{$module}Controller";
+        $moduleClass = "\\Modules\\{$moduleName}\\{$moduleName}Controller";
         if (!class_exists($moduleClass, true)) {
-            throw new \Yamw\Lib\Exceptions\HttpErrorException("The module $module was not found!", 404);
+            throw new \Yamw\Lib\Exceptions\HttpErrorException("The module $moduleName was not found!", 404);
         }
-        $module = new $moduleClass($this->module, $this->action, $this->section);
+        $module = new $moduleClass($this->module, $this->action, $this->section, $this->request);
 
         $actions = $action.'Action';
 

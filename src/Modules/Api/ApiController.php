@@ -26,8 +26,11 @@ class ApiController extends RootController
     {
         noTemplate();
         statGroup('api');
-        $this->id = Request::get('id');
-        forward404Unless(Request::exists('id') ^ ($this->module == 'chat' && $this->action == 'add'));
+
+        $request = $this->getRequest();
+
+        $this->id = $request->getValue('id');
+        forward404Unless($request->valueExists('id') ^ ($this->module == 'chat' && $this->action == 'add'));
 
         switch ($this->module) {
             case 'fav':
@@ -79,11 +82,12 @@ class ApiController extends RootController
         useHelper('BBCode');
         useHelper('sf/Text');
 
-        Request::populateFromPost(array('text'));
+        $request = $this->getRequest();
+        $request->populateFromPost(array('text'));
 
-        forward404Unless(Request::get('post-text'));
+        forward404Unless($request->getValue('post-text'));
 
-        $text = trim(substr(Request::get('post-text'), 0, 140));
+        $text = trim(substr($request->getValue('post-text'), 0, 140));
         $uid = UAM::getInstance()->getCurUserId();
 
         $result = AdvMySql::insertTable('chat')->insertData('time', time())
@@ -132,14 +136,16 @@ class ApiController extends RootController
     public function commentsAdd()
     {
         useHelper('sf/Text');
-        Request::populateFromPost(array('text'));
 
-        if (!Request::exists('post-text')) {
+        $request = $this->getRequest();
+        $request->populateFromPost(array('text'));
+
+        if (!$request->valueExists('post-text')) {
             throw new HttpErrorException('Missing Message!', 404);
         }
 
-        $type = Request::get('type').'.files';
-        $text = trim(substr(Request::get('post-text'), 0, 140));
+        $type = $request->getValue('type').'.files';
+        $text = trim(substr($request->getValue('post-text'), 0, 140));
         $uid = UAM::getInstance()->getCurUserId();
 
         if ($uid) {
@@ -172,9 +178,10 @@ class ApiController extends RootController
 
     public function commentsRetrieve()
     {
-        forward404Unless(Request::exists('type'));
+        $request = $this->getRequest();
+        forward404Unless($request->valueExists('type'));
 
-        $type = Request::get('type').'.files';
+        $type = $request->getValue('type').'.files';
 
         $this->result = AdvMongo::getConn()->$type->findOne(
             array(
@@ -202,9 +209,10 @@ class ApiController extends RootController
 
     public function detailsRetrieve()
     {
-        forward404Unless(Request::exists('type'));
+        $request = $this->getRequest();
+        forward404Unless($request->valueExists('type'));
 
-        $type = Request::get('type').'.files';
+        $type = $request->getValue('type').'.files';
 
         $query = AdvMongo::getConn()->$type->find(
             array('_id' => new \MongoId($this->id)),
@@ -254,8 +262,9 @@ class ApiController extends RootController
 
     public function favAdd()
     {
-        forward404Unless(Request::exists('type'));
-        $type = Request::get('type').'.files';
+        $request = $this->getRequest();
+        forward404Unless($request->valueExists('type'));
+        $type = $request->getValue('type').'.files';
 
         if (UAM::getInstance()->isLoggedIn()) {
             $uid = UAM::getInstance()->getCurUserId();
@@ -321,15 +330,16 @@ class ApiController extends RootController
     public function thumbsGenerate()
     {
         hasToBeAdmin();
-        forward404Unless(Request::exists('type'));
+        $request = $this->getRequest();
+        forward404Unless($request->valueExists('type'));
 
         useHelper('Image');
 
-        $size = Request::get('type');
+        $size = $request->getValue('type');
         if (is_numeric($size)) {
             $new_size = $size;
         } else {
-            switch ($Request->Type) {
+            switch ($size) {
                 case 'tiny':
                 case 'small':
                     $new_size = TN_SMALL_WIDTH;

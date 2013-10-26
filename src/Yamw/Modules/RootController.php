@@ -7,10 +7,18 @@ class RootController
     protected $action;
     protected $section;
 
-    public function __construct($module, $action, $section)
+    private $request;
+
+    public function __construct($module, $action, $section, \Yamw\Lib\Request $request)
     {
         $this->module = $module;
         $this->action = $action;
         $this->section = $section;
+        $this->request = $request;
+    }
+
+    protected function getRequest()
+    {
+        return $this->request;
     }
 }

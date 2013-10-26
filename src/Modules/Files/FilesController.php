@@ -18,8 +18,9 @@ class FilesController extends RootController
         statGroup('media-'.$this->module);
         noTemplate();
 
-        forward404Unless(Request::exists('id'));
-        $this->id = Request::get('id');
+        $request = $this->getRequest();
+        forward404Unless($request->valueExists('id'));
+        $this->id = $request->getValue('id');
 
         switch ($this->module) {
             case 'gallery':
@@ -58,8 +59,9 @@ class FilesController extends RootController
 
     public function thumbsAction()
     {
-        $this->size = Request::exists('type') ?
-            Request::get('type') : TN_BIG_WIDTH;
+        $request = $this->getRequest();
+        $this->size = $request->valueExists('type') ?
+            $request->getValue('type') : TN_BIG_WIDTH;
 
         // Retrieve file
         $this->file = Gallery::getThumbnail($this->id, $this->size);
