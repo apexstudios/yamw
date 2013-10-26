@@ -26,14 +26,14 @@
       <directory suffix=".php">src</directory>
       <exclude>
         <directory suffix="Test.php">src</directory>
-        <file>src/index.php</file>
-        <file>src/mongodbadmin.php</file>
-        <file>src/test.php</file>
-        <file>src/t.php</file>
-        <file>src/t2.php</file>
+        
         <directory suffix=".php">src/Content</directory>
+        <directory suffix=".php">src/Externals</directory>
         <directory suffix=".php">src/Templates</directory>
         <directory suffix=".php">src/config</directory>
+        <directory suffix=".php">src/webroot</directory>
+        
+        <file>src/constant_map.php</file>
       </exclude>
     </whitelist>
   </filter>
