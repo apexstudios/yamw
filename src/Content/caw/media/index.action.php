@@ -1,6 +1,6 @@
 <?php
 use Yamw\Lib\Mongo\AdvMongo;
-use Yamw\Lib\Exceptions\HttpError\Exception;
+use Yamw\Lib\Exceptions\HttpErrorException;
 
 try {
     $vid = AdvMongo::gridFs('media')->find();
