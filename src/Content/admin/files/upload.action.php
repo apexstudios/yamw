@@ -5,6 +5,8 @@ use Yamw\Lib\UAM\UAM;
 noTemplate();
 hasToBeAdmin();
 
+require_once 'upload.utilities.php';
+
 // Upload file to DB
 $grid = AdvMongo::gridFs($_POST['target']);
 
@@ -18,7 +20,7 @@ $blacklist = array('php', 'phtml', 'php3', 'php4', 'js', 'shtml', 'pl' , 'py', '
 foreach ($blacklist as $file) {
     if (preg_match("/\.$file\$/i", $_FILES['Datei']['name'])) {
         addNotice('Executable files are not allowed! Aborting...', 'error', true);
-        exit;
+        goto upload_end;
     }
 }
 
@@ -39,20 +41,6 @@ getLogger()->addNotice(
     'Uploaded File into '.$_POST['target'],
     array('filename' => $_FILES['Datei']['name'], 'target' => $_POST['target'], 'file' => $_FILES['Datei'])
 );
-
-
-// Now calculate additional metadata
-function meta($k=NULL, $v='') {
-    static $meta;
-    if ($k === NULL) {
-        return $meta;
-    } else {
-        if (!isset($meta)) {
-            $meta = array('$set' => array());
-        }
-        $meta['$set']['metadata.'.$k] = $v;
-    }
-}
 
 
 $file_ext = explode('.', $_FILES['Datei']['name']);
