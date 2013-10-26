@@ -9,7 +9,7 @@ class RootController
 
     private $request;
 
-    public function __construct($module, $action, $section, \Yamw\Lib\Request $request)
+    public function __construct($module, $action, $section, \Yamw\Lib\Request $request = null)
     {
         $this->module = $module;
         $this->action = $action;
