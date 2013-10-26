@@ -269,7 +269,7 @@ function down() {
         return false;
     }
 
-    $('#thumbs li').animate({bottom: '+='+(pagelength/3*size)});
+    $('#thumbs li').animate({bottom: '+=' + (pagelength/3*size)});
     button_down.addClass('activeUpDown');
     current_page++;
     $('#thumbs li:eq('+(current_page*pagelength)+') a').click();
@@ -288,7 +288,7 @@ function up() {
         return false;
     }
 
-    $('#thumbs li').animate({bottom: '-='+(pagelength/3*size)});
+    $('#thumbs li').animate({bottom: '-=' + (pagelength/3*size)});
     button_up.addClass('activeUpDown');
     current_page--;
     $('#thumbs li:eq('+(current_page*pagelength)+') a').click();
