@@ -15,11 +15,23 @@ class ModuleLoader
     protected $action;
     protected $section;
 
+    /**
+     * @var \Yamw\Lib\Request
+     */
+    protected $request;
+    protected $response;
+
     public function __construct()
     {
         if (!static::$routings) {
             $this->loadRoutings();
         }
+    }
+
+    public function setRequest(\Yamw\Lib\Request $request)
+    {
+        $this->request = $request;
+        return $this;
     }
 
     public function load($module, $action, $section)

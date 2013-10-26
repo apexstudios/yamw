@@ -19,6 +19,10 @@ class Core
     protected $current_route;
     public $page;
 
+    /**
+     * @var Request
+     */
+    protected $request;
     protected $ec_content;
 
     private $forward = false;
@@ -153,6 +157,7 @@ class Core
         $this->section = $Request->getValue('section');
         $this->module = $Request->getValue('module');
         $this->action = $Request->getValue('action');
+        $this->request = $Request;
 
         $this->init();
     }
@@ -206,7 +211,7 @@ class Core
      *
      * @return string The content.
      */
-    public function getModule($modules = '', $actions = '', $section = '')
+    public function getModule($modules = '', $actions = '', $section = '', Request $request = null)
     {
         ob_start();
         ob_implicit_flush(0);
@@ -223,9 +228,13 @@ class Core
             $section = $this->section;
         }
 
+        if (!$request) {
+            $request = $this->request;
+        }
+
         try {
             $moduleLoader = new Loaders\ModuleLoader();
-            $moduleLoader->load($modules, $actions, $section);
+            $moduleLoader->setRequest($request)->load($modules, $actions, $section);
         } catch (Exceptions\HttpErrorException $e) {
             ob_clean();
             echo $e->getMessage();
