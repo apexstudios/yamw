@@ -51,7 +51,6 @@ class Routes
 
     private function checkURIs()
     {
-        $this->request = new Request();
         foreach ($this->routes as $route_name => $route) {
             if ($this->uri == $route->url) {
                 $this->request->populate((array)$route->params);
