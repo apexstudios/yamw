@@ -2,13 +2,15 @@
 use Yamw\Lib\Request;
 use Yamw\Lib\UAM\UAM;
 
-Request::populateFromPost(array('name', 'pw', 'prev_site', 'ajax' => false));
+$request = $this->request;
 
-$name = Request::get('post-name');
-$pw = Request::get('post-pw');
-$prev_site = Request::get('post-prev_site') ? Request::get('post-prev_site') :
+$request->populateFromPost(array('name', 'pw', 'prev_site', 'ajax' => false));
+
+$name = $request->getValue('post-name');
+$pw = $request->getValue('post-pw');
+$prev_site = $request->getValue('post-prev_site') ? $request->getValue('post-prev_site') :
     getAbsPath();
-$ajax = Request::get('post-ajax');
+$ajax = $request->getValue('post-ajax');
 
 if ($name) {
     $this->result = UAM::getInstance()->logIn($name, $pw);
