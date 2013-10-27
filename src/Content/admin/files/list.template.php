@@ -1,53 +1,44 @@
 <?php
 use Yamw\Lib\UAM\UAM;
 ?>
-<table>
-<tr>
-    <th>Gallery</td>
-</tr>
+<table style="width: 100%;">
 <tr>
     <th>Filename</td>
-    <th>Size</td>
-    <th>Uploaded By</td>
-    <th>On</td>
-    <th>Downloads</td>
     <th>Preview</th>
     <th>Tasks</th>
 </tr>
 <?php
-foreach($gallery as $file) { ?>
+foreach($gallery as $file) {
+    $entryId = $file->file['_id'];
+    $entryName = $file->getFilename();
+    $linkPath = 'files/gallery/index/' . $entryId;
+    $entrySize = round($file->getSize()/1024/1024, 3);
+    $authorName = UAM::getInstance()->Users()->getUserNameById($file->file['metadata']['uploaded_by']['id']);
+    $entryDate = date(DATE_ANH_NHAN, $file->file['uploadDate']->sec);
+    $numDownloads = $file->file['metadata']['downloads'];
+    ?>
     <tr>
-        <td><a href="files/gallery/index/<?= $file->file['_id'] ?>"><?= $file->getFilename() ?></a></td>
-        <td><?= round($file->getSize()/1024/1024, 3) ?>MB</td>
-        <td><?= UAM::getInstance()->Users()->getUserNameById($file->file['metadata']['uploaded_by']['id']) ?></td>
-        <td><?= date(DATE_ANH_NHAN, $file->file['uploadDate']->sec) ?></td>
-        <td><?= $file->file['metadata']['downloads'] ?></td>
-        <td><img src="files/thumbs/index/<?= $file->file['_id'] ?>/150" /></td>
+        <td>
+            <div style="padding: 12px;">
+                <div style="float: right;">
+                    <?= $entryDate ?>
+                </div>
+                <div style="font-weight: bold; font-size: 1.2em;">
+                    <a href="<?= $linkPath ?>"><?= $entryName ?></a>
+                </div>
+                <div style="float: right;">
+                    <?= $authorName ?>
+                </div>
+                <div>
+                    <?= $entrySize ?>MB - <?= $numDownloads ?> downloads
+                </div>
+            </div>
+        </td>
+        <td><img src="files/thumbs/index/<?= $entryId ?>/150" /></td>
         <td>
             <div class="submitbutton" onclick="reissueThumbnails('<?= $file->file['_id'] ?>', 'default');">Regenerate</div>
             <div class="submitbutton" onclick="edit(this);">Edit</div>
         </td>
-    </tr>
-<?php } ?>
-<tr><td>&nbsp;</td></tr>
-<tr>
-    <th>Media</td>
-</tr>
-<tr>
-    <th>Filename</td>
-    <th>Size</td>
-    <th>Uploaded By</td>
-    <th>On</td>
-    <th>Downloads</td>
-</tr>
-<?php
-foreach($media as $file) { ?>
-    <tr>
-        <td><?= $file->getFilename() ?></td>
-        <td><?= round($file->getSize()/1024/1024, 3) ?>MB</td>
-        <td><?= UAM::getInstance()->Users()->getUserNameById($file->file['metadata']['uploaded_by']['id']) ?></td>
-        <td><?= date(DATE_ANH_NHAN, $file->file['uploadDate']->sec) ?></td>
-        <td><?= $file->file['metadata']['downloads'] ?></td>
     </tr>
 <?php } ?>
 </table>
