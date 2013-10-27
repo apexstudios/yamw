@@ -22,9 +22,11 @@ class GalleryView implements \Yamw\Views\Interfaces\ViewInterface
     {
         $container = new MarkupContainer;
 
-        $bigpic = HtmlFactory::divTag(
-            HtmlFactory::divTag($this->buildImages()
-        )->setId('PictureWide'))->setId("BigPicture");
+        $bigpic = str_replace("\n", "",
+            HtmlFactory::divTag(
+                HtmlFactory::divTag($this->buildImages()
+                )->setId('PictureWide'))->setId("BigPicture")
+        );
 
         $galpicctrl = HtmlFactory::divTag()
             ->setId('GalleryPicControl')
@@ -134,7 +136,7 @@ class GalleryView implements \Yamw\Views\Interfaces\ViewInterface
             $markup .= $this->buildImgTag(
                 $image['_id'],
                 TN_BIG_WIDTH
-            );
+            )->makeDirty();
         }
 
         return $markup;
