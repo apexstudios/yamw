@@ -1,4 +1,7 @@
 <?php
+
+use \Yamw\Lib\MySql\AdvMySql;
+
 noTemplate();
 hasToBeAdmin();
 

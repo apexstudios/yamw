@@ -1,9 +1,14 @@
 <?php
+
+use \Yamw\Lib\MySql\AdvMySql;
+
+$request = $this->getRequest();
+
 noTemplate();
 hasToBeAdmin();
-forward404Unless(Request::exists('id'));
+forward404Unless($request->valueExists('id'));
 
-$this->unit = AdvMySql::getTable('units_space')->where('id', Request::get('id'))->limit(1)->execute();
+$this->unit = AdvMySql::getTable('units_space')->where('id', $request->getValue('id'))->limit(1)->execute();
 forward404Unless($this->unit);
 
 include 'Form.form.php';
