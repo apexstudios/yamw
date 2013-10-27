@@ -4,6 +4,8 @@ namespace Yamw\Lib\MySql;
 use Yamw\Lib\Config;
 use Yamw\Lib\Schemer\Schemer;
 
+use \YamwLibs\Infrastructure\Profiler\Profiler;
+
 /**
  * <p>This class is responsible for all MySql-Stuff (primitive...)
  * <b>Warning! Singleton!</b></p>
@@ -244,7 +246,7 @@ class MySql
     {
         $profiler = Profiler::getInstance();
 
-        $profilerId = $profiler->sqlProfiler($this->query);
+        $profilerId = $profiler->sqlProfiler($query);
 
         $t = $this->conn->query($query);
         if ($this->conn->error) {
