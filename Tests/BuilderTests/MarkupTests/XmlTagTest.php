@@ -2,24 +2,21 @@
 use Yamw\Lib\Builders\Markup\XmlTag;
 
 /**
- * @covers \Yamw\Lib\Builders\MarkUp\XmlTag
  * @author AnhNhan
- *
  */
 class XmlTagTest extends AbstractMarkupTest
 {
     protected $class = '\\Yamw\\Lib\\Builders\\MarkUp\\XmlTag';
 
     /**
-     * @covers \Yamw\Lib\Builders\MarkUp\XmlTag::getOptions
      * @dataProvider data_options
      */
     public function testGetOptions($attr, $val) {
         $inst = new XmlTag(__CLASS__, __FILE__);
-        
+
         // Verify that the options are empty
         $this->assertCount(0, $inst->getOptions());
-        
+
         $inst->addOption($attr, $val);
 
         // Verify that the options are filled
@@ -37,16 +34,15 @@ class XmlTagTest extends AbstractMarkupTest
             $this->assertSame(array($attr => $val), $opt);
         }
     }
-    
+
     /**
-     * @covers \Yamw\Lib\Builders\MarkUp\XmlTag::addOption
      * @dataProvider data_options
      */
     public function testAddOption($attr, $val=null, $count=3)
     {
         $inst = new XmlTag(__CLASS__, __FILE__, array('hey', 'hallo' => 'gsh'));
         $inst->addOption($attr, $val);
-        
+
         $r = $inst->getOptions();
         if (is_array($attr)) {
             foreach ($attr as $key => $value) {
@@ -61,10 +57,10 @@ class XmlTagTest extends AbstractMarkupTest
             $this->assertArrayHasKey($attr, $r);
             $this->assertSame($val, $r[$attr]);
         }
-        
+
         $this->assertCount($count, $r);
     }
-    
+
     public function data_options()
     {
         return array(
@@ -88,9 +84,8 @@ class XmlTagTest extends AbstractMarkupTest
             ),
         );
     }
-    
+
     /**
-     * @covers \Yamw\Lib\Builders\MarkUp\XmlTag::addOption
      * @dataProvider data_options_invalid
      * @expectedException InvalidArgumentException
      */
@@ -98,7 +93,7 @@ class XmlTagTest extends AbstractMarkupTest
     {
         $this->testaddOption($attr, $val);
     }
-    
+
     public function data_options_invalid()
     {
         return array(
@@ -113,30 +108,25 @@ class XmlTagTest extends AbstractMarkupTest
             )
         );
     }
-    
-    /**
-     * @covers \Yamw\Lib\Builders\MarkUp\XmlTag::isSelfClosing
-     */
+
     public function testIsSelfClosing()
     {
         $class = $this->class;
         $inst = new $class('somename');
         $this->assertTrue($inst->isSelfClosing());
-        
+
         $inst->setContent('');
         $this->assertFalse($inst->isSelfClosing());
-        
+
         // Now the other way around
         $inst = new $class('somename', 'some content');
         $this->assertFalse($inst->isSelfClosing());
-        
+
         $inst->setContent(null);
         $this->assertTrue($inst->isSelfClosing());
     }
 
     /**
-     * @covers \Yamw\Lib\Builders\MarkUp\XmlTag::__toString
-     * @covers \Yamw\Lib\Builders\MarkUp\XmlTag::addOption
      * @dataProvider data_xml_test
      */
     public function testToString($output, $name, $content, $options)
@@ -147,7 +137,7 @@ class XmlTagTest extends AbstractMarkupTest
         // String concatenation, since this should trigger the __toString method
         $this->assertXmlStringEqualsXmlString($output, ''.$inst);
     }
-    
+
     public function data_xml_test()
     {
         return array(
@@ -179,7 +169,7 @@ class XmlTagTest extends AbstractMarkupTest
             )
         );
     }
-    
+
     public function data_method_chain()
     {
         return array(

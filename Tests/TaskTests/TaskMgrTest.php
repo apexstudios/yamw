@@ -2,9 +2,7 @@
 use Yamw\Lib\Tasks;
 
 /**
- *
  * @author AnhNhan <anhnhan@outlook.com>
- * @covers \Yamw\Lib\Tasks
  */
 class TaskMgrTest extends PHPUnit_Framework_TestCase
 {

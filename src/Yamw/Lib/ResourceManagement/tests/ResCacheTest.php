@@ -6,9 +6,7 @@ namespace Yamw\Lib\ResourceManagement;
  */
 class ResCacheTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @covers Yamw\Lib\ResourceManagement\ResCache::retrieve
-     */
+
     public function testRetrieve()
     {
         $test_string = rand_string();
@@ -23,9 +21,6 @@ class ResCacheTest extends \PHPUnit_Framework_TestCase
         self::assertEquals($test_string, $obj['content']);
     }
 
-    /**
-     * @covers Yamw\Lib\ResourceManagement\ResCache::save
-     */
     public function testSave()
     {
         $test_string = rand_string();
@@ -67,9 +62,6 @@ class ResCacheTest extends \PHPUnit_Framework_TestCase
         self::assertSame(1, $count);
     }
 
-    /**
-     * @covers Yamw\Lib\ResourceManagement\ResCache::touch
-     */
     public function testTouch()
     {
         $test_string = rand_string();
@@ -88,4 +80,5 @@ class ResCacheTest extends \PHPUnit_Framework_TestCase
         // Assert that the content is still the same
         self::assertEquals($test_string, $obj['content']);
     }
+
 }

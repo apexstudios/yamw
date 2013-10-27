@@ -3,9 +3,7 @@ use \Yamw\Lib\Config;
 use \Yamw\Lib\MySql\AdvMySql_Conn;
 
 /**
- *
  * @author AnhNhan <anhnhan@outlook.com>
- * @covers \Yamw\Lib\MySql\AdvMySql_Conn
  */
 class AdvMySql_ConnTest extends PHPUnit_Framework_TestCase
 {

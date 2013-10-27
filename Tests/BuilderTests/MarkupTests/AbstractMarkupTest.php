@@ -2,18 +2,14 @@
 use Yamw\Lib\Builders\Markup\AbstractMarkup;
 
 /**
- * @covers \Yamw\Lib\Builders\MarkUp\AbstractMarkup<extended>
  * @author AnhNhan
  *
  */
 class AbstractMarkupTest extends PHPUnit_Framework_TestCase
 {
     protected $class = 'Markup';
-    
+
     /**
-     * @covers \Yamw\Lib\Builders\MarkUp\AbstractMarkup::__construct
-     * @covers \Yamw\Lib\Builders\MarkUp\AbstractMarkup::getContent
-     * @covers \Yamw\Lib\Builders\MarkUp\AbstractMarkup::getName
      * @dataProvider data_markup
      */
     public function testConstructor($name, $content)
@@ -21,17 +17,17 @@ class AbstractMarkupTest extends PHPUnit_Framework_TestCase
         if (is_object($content)) {
             $content->makeDirty();
         }
-        
+
         $class = $this->class;
         $inst = new $class($name, $content);
-        
+
         $this->assertSame($name, $inst->getName());
         $this->assertSame($content, $inst->getContent());
 
         $this->assertInstanceOf('\Yamw\Lib\Builders\MarkUp\AbstractMarkup', $inst);
         $this->assertInstanceOf('\Yamw\Lib\Builders\Interfaces\YamwMarkupInterface', $inst);
     }
-    
+
     /**
      * @expectedException InvalidArgumentException
      * @dataProvider data_invalid_wo_null
@@ -41,7 +37,7 @@ class AbstractMarkupTest extends PHPUnit_Framework_TestCase
         $class = $this->class;
         new $class('somestring', $content);
     }
-    
+
     /**
      * @expectedException InvalidArgumentException
      * @dataProvider data_invalid
@@ -52,31 +48,30 @@ class AbstractMarkupTest extends PHPUnit_Framework_TestCase
         $class = $this->class;
         new $class($name);
     }
-    
+
     public function data_invalid_name()
     {
         return array(array(''), array(new XmlTag('hi')));
     }
-    
+
     /**
-     * @covers \Yamw\Lib\Builders\MarkUp\AbstractMarkup::appendContent
      * @dataProvider data_append
      */
     public function testAppendContent($content, $new_content, $exp_content) {
         $class = '\\Yamw\\Lib\\Builders\\MarkUp\\XmlTag';
 
         $inst = new $class('somename', $content);
-        
+
         $this->assertEquals($content, $inst->getContent().'');
-        
+
         $inst->appendContent($new_content);
-        
+
         $this->assertEquals($exp_content, $inst->getContent().'');
     }
-    
+
     public function data_append() {
         $class = '\\Yamw\\Lib\\Builders\\MarkUp\\XmlTag';
-        
+
         return array(
             array(
                 'hello', 'world', "helloworld"
@@ -94,7 +89,6 @@ class AbstractMarkupTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Yamw\Lib\Builders\MarkUp\AbstractMarkup::removeContent
      * @dataProvider data_markup
      */
     public function testRemoveContent($content)
@@ -114,7 +108,7 @@ class AbstractMarkupTest extends PHPUnit_Framework_TestCase
         $inst = new $class('somestring', $content);
         $inst->appendContent($content);
     }
-    
+
     /**
      * @dataProvider data_method_chain
      */
@@ -122,7 +116,7 @@ class AbstractMarkupTest extends PHPUnit_Framework_TestCase
     {
         $class = $this->class;
         $inst = new $class('somestring', $arg);
-        
+
         if($arg && $arg2) {
             $r = $inst->$methodname($arg, $arg2);
         } elseif($arg) {
@@ -130,17 +124,17 @@ class AbstractMarkupTest extends PHPUnit_Framework_TestCase
         } else {
             $r = $inst->$methodname();
         }
-        
+
         $this->assertInstanceOf(get_parent_class($inst), $r);
     }
-    
+
     public function data_invalid_wo_null()
     {
         return array(
             array(new OtherClass())
         );
     }
-    
+
     public function data_invalid()
     {
         $vars = array(
@@ -151,7 +145,7 @@ class AbstractMarkupTest extends PHPUnit_Framework_TestCase
         );
         return array_merge($this->data_invalid_wo_null(), $vars);
     }
-    
+
     public function data_markup()
     {
         $class = $this->class;
@@ -166,7 +160,7 @@ class AbstractMarkupTest extends PHPUnit_Framework_TestCase
             array('htf', new $class('somestring', 'somecontent'))
         );
     }
-    
+
     public function data_method_chain()
     {
         return array(
@@ -180,7 +174,7 @@ class AbstractMarkupTest extends PHPUnit_Framework_TestCase
 // Stubs
 class OtherClass
 {
-    
+
 }
 
 class Markup extends AbstractMarkup
