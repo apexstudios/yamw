@@ -56,11 +56,13 @@ class GalleryView implements \Yamw\Views\Interfaces\ViewInterface
             ->appendContent(
                 HtmlFactory::divTag()->setId('up1')
                     ->setContent(HtmlFactory::spanTag("(up)"))
+                    ->addOption('onclick', "up();")
             )->appendContent(
                 $this->buildThumbnails()
             )->appendContent(
                 HtmlFactory::divTag()->setId('down1')
                     ->setContent(HtmlFactory::spanTag("(down)"))
+                    ->addOption('onclick', "down();")
             );
 
         $container->push($thumbs);
@@ -259,6 +261,8 @@ var pagelength_horz = 1;
 var size = 92;
 var size_horz = 900;
 
+var thumbSize = 92;
+
 var button_up = $('#up1');
 var button_down = $('#down1');
 var button_left;
@@ -271,7 +275,7 @@ function down() {
         return false;
     }
 
-    $('#thumbs li').animate({bottom: '+=' + (pagelength/3*size)});
+    $('#thumbs li').animate({bottom: '+=' + (pagelength/3 * thumbSize)});
     button_down.addClass('activeUpDown');
     current_page++;
     $('#thumbs li:eq('+(current_page*pagelength)+') a').click();
@@ -290,7 +294,7 @@ function up() {
         return false;
     }
 
-    $('#thumbs li').animate({bottom: '-=' + (pagelength/3*size)});
+    $('#thumbs li').animate({bottom: '-=' + (pagelength/3 * thumbSize)});
     button_up.addClass('activeUpDown');
     current_page--;
     $('#thumbs li:eq('+(current_page*pagelength)+') a').click();
