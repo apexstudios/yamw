@@ -60,6 +60,9 @@ $('#upload').ajaxForm({
     },
     complete: function (xhr) {
         $('#response').html(xhr.responseText);
+        var percentVal = 100 + '%';
+        bar.width(percentVal);
+        percent.html(percentVal);
         // $('#response').slideUp(400).html(xhr.responseText).slideDown(400);
     }
 });
