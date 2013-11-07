@@ -6,7 +6,7 @@ use Yamw\Lib\Builders\Markup\XmlTag;
  */
 class XmlTagTest extends AbstractMarkupTest
 {
-    protected $class = '\\Yamw\\Lib\\Builders\\MarkUp\\XmlTag';
+    protected $class = '\\Yamw\\Lib\\Builders\\Markup\\XmlTag';
 
     /**
      * @dataProvider data_options

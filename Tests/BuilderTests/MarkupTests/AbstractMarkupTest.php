@@ -24,7 +24,7 @@ class AbstractMarkupTest extends PHPUnit_Framework_TestCase
         $this->assertSame($name, $inst->getName());
         $this->assertSame($content, $inst->getContent());
 
-        $this->assertInstanceOf('\Yamw\Lib\Builders\MarkUp\AbstractMarkup', $inst);
+        $this->assertInstanceOf('\Yamw\Lib\Builders\Markup\AbstractMarkup', $inst);
         $this->assertInstanceOf('\Yamw\Lib\Builders\Interfaces\YamwMarkupInterface', $inst);
     }
 
@@ -58,7 +58,7 @@ class AbstractMarkupTest extends PHPUnit_Framework_TestCase
      * @dataProvider data_append
      */
     public function testAppendContent($content, $new_content, $exp_content) {
-        $class = '\\Yamw\\Lib\\Builders\\MarkUp\\XmlTag';
+        $class = '\\Yamw\\Lib\\Builders\\Markup\\XmlTag';
 
         $inst = new $class('somename', $content);
 
@@ -70,7 +70,7 @@ class AbstractMarkupTest extends PHPUnit_Framework_TestCase
     }
 
     public function data_append() {
-        $class = '\\Yamw\\Lib\\Builders\\MarkUp\\XmlTag';
+        $class = '\\Yamw\\Lib\\Builders\\Markup\\XmlTag';
 
         return array(
             array(

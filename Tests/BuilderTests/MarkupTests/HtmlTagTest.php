@@ -5,7 +5,7 @@ require_once __DIR__.'/XmlTagTest.php';
 
 class HtmlTagTest extends XmlTagTest
 {
-    protected $class = '\\Yamw\\Lib\\Builders\\MarkUp\\HtmlTag';
+    protected $class = '\\Yamw\\Lib\\Builders\\Markup\\HtmlTag';
 
     public function testParent() {
         $inst = new HtmlTag('name');
