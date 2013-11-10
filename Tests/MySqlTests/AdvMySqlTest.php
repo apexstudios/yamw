@@ -9,6 +9,8 @@ class AdvMySqlTest extends PHPUnit_Framework_TestCase
 {
     public function testStubs()
     {
+        \Yamw\Lib\MySql\AdvMySql_Conn::getConn(false);
+
         /*AdvMySql::createTable('');
         AdvMySql::deleteTable('');
         AdvMySql::dropTable('');*/
@@ -18,15 +20,15 @@ class AdvMySqlTest extends PHPUnit_Framework_TestCase
         ->insertFunction('se', 'vs', '', 'text')
         ->insertFunction('se', 'vs', '', 'integer')
         ->setModel('g')->generateQuery();
-        
+
         $update = AdvMySql::updateTable('')
         ->updateData('gs', 'rs')
         ->updateFunction('ges', 'Bdr', 'raw');
-        
+
         self::assertInstanceOf('\Yamw\Lib\MySql\AdvMySql_updateTable', $update);
         $update->generateQuery();
     }
-    
+
     /**
      * @dataProvider data_query
      */
@@ -34,7 +36,7 @@ class AdvMySqlTest extends PHPUnit_Framework_TestCase
     {
         self::assertRegExp($expquery, trim($query));
     }
-    
+
     public function data_query()
     {
         return array(
@@ -56,7 +58,7 @@ FROM test.*?NATURAL JOIN joint/i",
             ),
         );
     }
-    
+
     /**
      * @outputBuffering enabled
      */
