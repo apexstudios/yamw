@@ -9,7 +9,7 @@ final class AdvMySql_Conn
     private static $conn;
     private static $inst;
 
-    private function __construct()
+    private function __construct($failHardWhenFailing = true)
     {
         global $Config;
         try {
@@ -24,9 +24,11 @@ final class AdvMySql_Conn
                 throw new MySqlException(self::$conn->connect_errno, 'NoQuery(tm)');
             }
         } catch (MySqlException $e) {
-            ob_end_clean();
-            $e->getMessage();
-            exit(1);
+            if ($failHardWhenFailing) {
+                ob_end_clean();
+                $e->getMessage();
+                exit(1);
+            }
         }
 
         self::$conn->set_charset("utf8");
@@ -35,11 +37,11 @@ final class AdvMySql_Conn
     /**
      * @return \mysqli
      */
-    public static function getConn()
+    public static function getConn($failHardWhenFailing = true)
     {
         if (!isset(self::$inst)) {
             $class = __CLASS__;
-            self::$inst = new $class;
+            self::$inst = new $class($failHardWhenFailing);
         }
         return self::$conn;
     }
