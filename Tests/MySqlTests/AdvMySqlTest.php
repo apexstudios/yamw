@@ -7,7 +7,7 @@ use Yamw\Lib\MySql\AdvMySql;
  */
 class AdvMySqlTest extends PHPUnit_Framework_TestCase
 {
-    public function testStubs()
+    public function htestStubs()
     {
         \Yamw\Lib\MySql\AdvMySql_Conn::getConn(false);
 
@@ -32,7 +32,7 @@ class AdvMySqlTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider data_query
      */
-    public function testQueryGeneration($expquery, $query)
+    public function htestQueryGeneration($expquery, $query)
     {
         self::assertRegExp($expquery, trim($query));
     }
@@ -62,7 +62,7 @@ FROM test.*?NATURAL JOIN joint/i",
     /**
      * @outputBuffering enabled
      */
-    public function testCanNotCallConstructor()
+    public function htestCanNotCallConstructor()
     {
         self::expectOutputRegex('/Warning/');
         new AdvMySql();
