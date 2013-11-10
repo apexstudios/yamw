@@ -26,7 +26,7 @@ final class AdvMySql_Conn
         } catch (MySqlException $e) {
             ob_end_clean();
             $e->getMessage();
-            exit;
+            exit(1);
         }
 
         self::$conn->set_charset("utf8");
